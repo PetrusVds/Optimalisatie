@@ -1,0 +1,65 @@
+\begin{theo}[Optimization problem in standard form]{Standard}
+    \vspace*{-0.5cm}
+    \begin{mini*}|l|
+        {x \in \mathbb{R}^n}{f(x)}
+        {}{}
+        \addConstraint{g(x) = 0}
+        \addConstraint{h(x) \geq 0}.
+    \end{mini*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+
+\begin{theo}[Level Set]{LevelSet}
+    The set 
+    \begin{equation*}
+        \{ \ x \in \mathbb{R}^n \ | \ f(x) = c \ \}
+    \end{equation*}
+    is the level set of $f$ for the value $c$.
+\end{theo}
+
+\begin{theo}[Feasible set]{FeasibleSet}
+    The set 
+    \begin{equation*}
+        \{ \ x \in \mathbb{R}^n \ | \ g(x) = 0, \ h(x) \geq 0 \ \}
+    \end{equation*}
+    is the feasible set $\Omega$.
+\end{theo}
+
+\begin{theo}[Global minimizer]{GlobalMinimizer}
+    The point $x^*$ is a global minimizer if and only if
+    \begin{equation*}
+        x^* \in \Omega, \ \forall x \in \Omega: \ f(x^*) \leq f(x).
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Strict global minimizer]{StrictGlobalMinimizer}
+    The point $x^*$ is a strict global minimzer if and only if
+    \begin{equation*}
+        x^* \in \Omega, \ \forall x \in \Omega \setminus \{ x^*\} : \ f(x^*) < f(x).
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Strict local minimizer]{StrictLocalMinimizer}
+    The point $x^*$ is a strict local minimizer if and only if $x^* \in \Omega$ and there exists a neighborhood $\mathcal{N}$ of $x^*$ such that 
+    \begin{equation*}
+        \forall x \in (\Omega \cap \mathcal{N}) \setminus \{x^*\}: \ f(x^*) < f(x).
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Weierstrass]{Weierstrass}
+    if $\Omega \in \mathbb{R}^n$ is compact and $f: \Omega \rightarrow \mathbb{R}$ is continuous, then there exists a global minimizer of the optimization problem
+    \begin{mini*}|l|
+        {x \in \mathbb{R}^n}{f(x)}
+        {}{}
+        \addConstraint{x \in \Omega}.
+    \end{mini*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{prf}[Weierstrass]{prfWeierstrass}
+    Regard the graph of $f$, $G = \{(x, f(x)) \in \mathbb{R}^n \times \mathbb{R} \ | \ x \in \Omega \}$. $G$ is a compact set, and so is the projection of $G$ onto its last coordinate, the set $G = \{ s \in \mathbb{R} \ | \ \exists x \ \text{such that} \ (x,s) \in G\}$, which is a compact interval $\left[f_{\text{min}},f_{\text{max}}\right] \subset \mathbb{R}$. By construction, there must be at least one $x^*$ such that $(x^*, f(x^*)) \in G$.
+\end{prf}

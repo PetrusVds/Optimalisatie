@@ -1,0 +1,31 @@
+%------------------------------------------------
+% Comparison Environment with Adjusted Numbering
+%------------------------------------------------
+
+\newcounter{vrg}[section]
+\setcounter{vrg}{0}
+
+% Redefine the comparison numbering so that section 0 displays as 1
+\renewcommand{\thevrg}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{vrg}}
+
+\newenvironment{vrg}[2][]{%
+    \refstepcounter{vrg}%
+    \ifstrempty{#1}%
+    {\mdfsetup{%
+        frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=teal!20]
+        {\strut Comparison~\thevrg};}}%
+    }%
+    {\mdfsetup{%
+        frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=teal!20]
+        {\strut Comparison~\thevrg:~#1};}}%
+    }%
+    \mdfsetup{innertopmargin=10pt,linecolor=teal!20,%
+    linewidth=2pt,topline=true,%
+    frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+    }%
+    \begin{mdframed}[]\relax%
+    \label{#2}}{\vspace{0.25cm}\end{mdframed}}
