@@ -1,0 +1,88 @@
+\documentclass{exam} % Allows insertion of \question and generally looks nicer
+
+%------------------------------------------------
+%	            PACKAGES AND CONFIG
+%------------------------------------------------
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{titling}
+\usepackage{caption}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage[dutch]{babel}
+\counterwithin*{equation}{section}% Reset equation at \section
+\counterwithin*{equation}{subsection}% Reset equation at \subsection
+\counterwithin*{equation}{subsubsection}% Reset equation at \subsubsection
+\setlength\parindent{0pt}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+%------------------------------------------------
+%	                COMMANDS
+%------------------------------------------------
+
+\renewcommand\maketitlehooka{\null\mbox{}\vfill}
+\renewcommand\maketitlehookd{\vfill\null}
+\newcommand{\RomanNumeralCaps}[1]{\MakeUppercase{\romannumeral #1}}
+\input{Commands/Setup}
+
+\newcommand{\introPage}[1]{
+
+    \vspace*{\fill}
+    \begin{center}
+        
+    \section*{#1}
+    \end{center}
+
+    \vspace*{\fill}
+}
+
+%------------------------------------------------
+%	            START OF DOCUMENT
+%------------------------------------------------
+
+\title{*}
+\author{*}
+\date{Academiejaar *}
+
+\begin{document}
+
+\begin{titlingpage}
+\maketitle
+\end{titlingpage}
+
+\newpage
+
+%------------------------------------------------
+%	              INTRODUCTION
+%------------------------------------------------
+
+% \introPage{Inleiding}
+
+%------------------------------------------------
+%	           TABLE OF CONTENTS
+%------------------------------------------------
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%------------------------------------------------
+%	                INPUTS
+%------------------------------------------------
+
+\section{*}
+
+\vspace{0.5cm}
+
+% \input{Chapters/*}
+
+\end{document}
