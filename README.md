@@ -1,1 +1,3 @@
-Summary for Optimization [H0S15a], see out/opt-summary.pdf
+## Optimization [H0S15a]
+
+Summary in out/opt-summary.pdf
