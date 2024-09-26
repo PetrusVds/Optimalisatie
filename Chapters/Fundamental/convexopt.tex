@@ -36,3 +36,37 @@
     \vspace{-0.75cm}
 \end{prf}
 
+\begin{theo}[Convexity of Sublevel subsets]{ConvexitySublevelSubset}
+    \vspace*{-0.5cm}
+    \begin{minipage}{0.58\textwidth}
+        The sublevel set 
+        \begin{equation*}
+            \{ \ x \in \Omega \ | \ f(x) \leq c \ \}
+        \end{equation*} 
+        of a convex function $f: \Omega \rightarrow \R$ with respect to any constant $c \in \R$ is convex. 
+    \end{minipage}
+    \begin{minipage}{0.38\textwidth}
+        \begin{center}
+            \vspace*{0.5cm}
+            \includegraphics[scale = 0.475]{Images/Fundamental/ConvexSubset.png}
+        \end{center}
+    \end{minipage}
+    \vspace{-0.3cm}
+\end{theo}
+
+\begin{prf}[Convexity of Sublevel subsets]{prfConvexitySublevelSubset}
+    If $f(x) \leq c$ and $f(y) \leq c$, then for any $\lambda \in [0,1]$ holds also 
+    \begin{equation*}
+        f((1-\lambda)x + \lambda y) \leq (1-\lambda)f(x) + \lambda f(y) \leq \underset{= c}{\underbrace{(1-\lambda)c + \lambda c}}.
+    \end{equation*}
+    \vspace*{-0.7cm}
+\end{prf}
+
+\begin{pro}[Convexity perserving operations on convex sets]{ConvexityPreservingOperations}
+    The following operations preserve convexity of a set:
+    \begin{enumerate}
+        \item The intersection of finitely or infinitely many convex sets is convex.
+        \item Affine image: if $\Omega$ is convex, then for $A \in \R^{m \times n}$, $b \in \R^m$ also the set $A\Omega + b = \{ y \in \R^m \ | \ \exists x \in \Omega : y = Ax + b \}$ is convex.
+        \item Affine pre-image: if $\Omega$ is convex, then for $A \in \R^{n \times m}$, $b \in \R^n$ also the set $\{ z \in \R^m \ | \ Az + b \in \Omega \}$ is convex.
+    \end{enumerate}
+\end{pro}
