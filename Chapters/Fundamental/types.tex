@@ -1,48 +1,3 @@
-\begin{theo}[Nonlinear Programming (NLP)]{NLP}
-    Nonlinear Programming Problems are poblems of the following form:
-    \begin{mini*}|l|
-        {x \in \mathbb{R}^n}{f(x)}
-        {}{}
-        \addConstraint{g(x) = 0}
-        \addConstraint{h(x) \geq 0},
-    \end{mini*}
-    where $f: \ \R^n \rightarrow \R$, $g: \ \R^n \rightarrow \R^p$, and $h: \ \R^n \rightarrow \R^q$, are assumed to be continuously differentiable at least once.
-\end{theo}
-
-\begin{theo}[Linear Programming (LP)]{LP}
-    When the functions $f$, $g$, $h$ are affine (i\@.e\@., they can be expressed in the form $f(x) = a^T x + b$ for some vector $a$ and scalar $b$) in the general formulation (see Theorem~\ref{NLP}), the general NLP gets something easier to solve, namely a Linear Program (LP), which can be written as follows:
-    \begin{mini*}|l|
-        {x \in \mathbb{R}^n}{c^T x}
-        {}{}
-        \addConstraint{Ax-b = 0}
-        \addConstraint{Cx - d \geq 0},
-    \end{mini*}
-    where $c \in \R^n$, $A \in \R^{p \times n}$, $b \in \R^p$, $C \in \R^{q \times n}$, and $d \in \R^q$.
-\end{theo}
-
-\begin{theo}[Quadratic Programming (QP)]{QP}
-    When the functions $g$, $h$ are affine (as for an LP in Theorem~\ref{LP}), and the objective function $f$ is a linear-quadratic function, the NLP becomes a Quadratic Program (QP), which can be written as follows:
-    \begin{mini*}|l|
-        {x \in \mathbb{R}^n}{c^T x + \frac{1}{2}x^T Bx}
-        {}{}
-        \addConstraint{Ax-b = 0}
-        \addConstraint{Cx - d \geq 0},
-    \end{mini*}
-    where, in addition to the LP parameters, $B \in \R^{n \times n}$ is the Hessian matrix. Specifically, for the objective function $f(x) = c^T x + \frac{1}{2}x^T B x$, the Hessian is given by:
-    \begin{equation*}
-        \nabla^2 f(x) = B.
-    \end{equation*}
-    \vspace*{-0.7cm}
-\end{theo}
-
-\begin{theo}[Convex QP]{ConvexQP}
-    If the Hessian matrix $B$ is positive semi-definite (i\@.e\@. if $\forall z \in \mathbb{R}^n \setminus \{0\}: z^T Bz \geq 0$) we call the QP a convex QP\@. Convex QPs are tremendously easier to solve globally than “non-convex QPs” (i\@.e\@., where the Hessian B is not positive semi-definite), which might have different local minima (i\@.e\@. have a non-convex solution set).
-\end{theo}
-
-\begin{theo}[Strictly convex QP]{StrictlyConvexQP}
-    If the Hessian matrix $B$ is positive definite (i\@.e\@. if $\forall z \in \mathbb{R}^n \setminus \{0\}: z^T Bz > 0$) we call the QP a strictly convex QP\@. Strictly convex QPs are a subset of convex QPs (see Theorem~\ref{ConvexQP}).
-\end{theo}
-
 \begin{theo}[Convex set]{ConvexSet}
     A set $\Omega \subset \mathbb{R}^n$ is convex if 
     \begin{equation*}
@@ -79,6 +34,8 @@
     An optimization problem with convex feasible set $\Omega$ and convex objective function $f: \ \Omega \rightarrow \R$ is called a convex optimization problem. 
 \end{theo}
 
+\newpage
+
 \begin{theo}[Globality of local minima of convex optimization problem]{LocalImpliesGlobal}
     For a convex optimization problem, a local minimum is also a global one.
 \end{theo}
@@ -112,9 +69,54 @@
     An optimization problem with no constraints, i\@.e\@. $g(x) = 0$ and $h(x) \geq 0$ are empty, is called an unconstrained optimization problem. 
 \end{theo}
 
+\begin{ex}[Nonlinear Programming (NLP)]{NLP}
+    Nonlinear Programming Problems are poblems of the following form:
+    \begin{mini*}|l|
+        {x \in \mathbb{R}^n}{f(x)}
+        {}{}
+        \addConstraint{g(x) = 0}
+        \addConstraint{h(x) \geq 0},
+    \end{mini*}
+    where $f: \ \R^n \rightarrow \R$, $g: \ \R^n \rightarrow \R^p$, and $h: \ \R^n \rightarrow \R^q$, are assumed to be continuously differentiable at least once.
+\end{ex}
+
+\begin{ex}[Linear Programming (LP)]{LP}
+    When the functions $f$, $g$, $h$ are affine (i\@.e\@., they can be expressed in the form $f(x) = a^T x + b$ for some vector $a$ and scalar $b$) in the general formulation (see Theorem~\ref{NLP}), the general NLP gets something easier to solve, namely a Linear Program (LP), which can be written as follows:
+    \begin{mini*}|l|
+        {x \in \mathbb{R}^n}{c^T x}
+        {}{}
+        \addConstraint{Ax-b = 0}
+        \addConstraint{Cx - d \geq 0},
+    \end{mini*}
+    where $c \in \R^n$, $A \in \R^{p \times n}$, $b \in \R^p$, $C \in \R^{q \times n}$, and $d \in \R^q$.
+\end{ex}
+
+\begin{ex}[Quadratic Programming (QP)]{QP}
+    When the functions $g$, $h$ are affine (as for an LP in Theorem~\ref{LP}), and the objective function $f$ is a linear-quadratic function, the NLP becomes a Quadratic Program (QP), which can be written as follows:
+    \begin{mini*}|l|
+        {x \in \mathbb{R}^n}{c^T x + \frac{1}{2}x^T Bx}
+        {}{}
+        \addConstraint{Ax-b = 0}
+        \addConstraint{Cx - d \geq 0},
+    \end{mini*}
+    where, in addition to the LP parameters, $B \in \R^{n \times n}$ is the Hessian matrix. Specifically, for the objective function $f(x) = c^T x + \frac{1}{2}x^T B x$, the Hessian is given by:
+    \begin{equation*}
+        \nabla^2 f(x) = B.
+    \end{equation*}
+    \vspace*{-0.7cm}
+\end{ex}
+
+\begin{theo}[Convex QP]{ConvexQP}
+    If the Hessian matrix $B$ is positive semi-definite (i\@.e\@. if $\forall z \in \mathbb{R}^n \setminus \{0\}: z^T Bz \geq 0$) we call the QP a convex QP\@. Convex QPs are tremendously easier to solve globally than “non-convex QPs” (i\@.e\@., where the Hessian B is not positive semi-definite), which might have different local minima (i\@.e\@. have a non-convex solution set).
+\end{theo}
+
+\begin{theo}[Strictly convex QP]{StrictlyConvexQP}
+    If the Hessian matrix $B$ is positive definite (i\@.e\@. if $\forall z \in \mathbb{R}^n \setminus \{0\}: z^T Bz > 0$) we call the QP a strictly convex QP\@. Strictly convex QPs are a subset of convex QPs (see Theorem~\ref{ConvexQP}).
+\end{theo}
+
 \newpage
 
-\begin{theo}[Mixed-Integer Programming (MIP)]{MIP}
+\begin{ex}[Mixed-Integer Programming (MIP)]{MIP}
     A mixed-integer programming problem or mixed-integer program (MIP) is a problem with both real and integer decision variables. A MIP can be formulated as follows:
 
     \begin{minipage}{0.64\textwidth}
@@ -131,4 +133,5 @@
             \includegraphics[scale = 0.5]{Images/Fundamental/MIP.png}
         \end{center}
     \end{minipage}
-\end{theo}
+\end{ex}
+
