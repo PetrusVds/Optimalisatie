@@ -1,12 +1,11 @@
 %------------------------------------------------
-% Application Environment with Adjusted Numbering
+%             Application Environment
 %------------------------------------------------
 
-\newcounter{app}[section]
+\newcounter{app}[subsection]
 \setcounter{app}{0}
 
-% Redefine the application numbering so that section 0 displays as 1
-\renewcommand{\theapp}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{app}}
+\renewcommand{\theapp}{\arabic{subsection}.\arabic{app}}
 
 \newenvironment{app}[2][]{%
     \refstepcounter{app}%

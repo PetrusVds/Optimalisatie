@@ -1,12 +1,11 @@
 %------------------------------------------------
-% Comparison Environment with Adjusted Numbering
+%             Comparison Environment
 %------------------------------------------------
 
-\newcounter{vrg}[section]
+\newcounter{vrg}[subsection]
 \setcounter{vrg}{0}
 
-% Redefine the comparison numbering so that section 0 displays as 1
-\renewcommand{\thevrg}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{vrg}}
+\renewcommand{\thevrg}{\arabic{subsection}.\arabic{vrg}}
 
 \newenvironment{vrg}[2][]{%
     \refstepcounter{vrg}%

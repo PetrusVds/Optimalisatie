@@ -1,12 +1,11 @@
 %------------------------------------------------
-% Property Environment with Adjusted Numbering
+%               Property Environment 
 %------------------------------------------------
 
-\newcounter{pro}[section]
+\newcounter{pro}[subsection]
 \setcounter{pro}{0}
 
-% Redefine the property numbering so that section 0 displays as 1
-\renewcommand{\thepro}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{pro}}
+\renewcommand{\thepro}{\arabic{subsection}.\arabic{pro}}
 
 \newenvironment{pro}[2][]{%
     \refstepcounter{pro}%

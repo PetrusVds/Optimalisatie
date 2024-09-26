@@ -1,12 +1,11 @@
 %------------------------------------------------
-% Example Environment with Adjusted Numbering
+%              Example Environment
 %------------------------------------------------
 
-\newcounter{ex}[section]
+\newcounter{ex}[subsection]
 \setcounter{ex}{0}
 
-% Redefine the example numbering so that section 0 displays as 1
-\renewcommand{\theex}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{ex}}
+\renewcommand{\theex}{\arabic{subsection}.\arabic{ex}}
 
 \newenvironment{ex}[2][]{%
     \refstepcounter{ex}%

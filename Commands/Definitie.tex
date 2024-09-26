@@ -1,12 +1,11 @@
 %------------------------------------------------
-% Theorem Environment with Adjusted Numbering
+%              Theorem Environment 
 %------------------------------------------------
 
-\newcounter{theo}[section]
+\newcounter{theo}[subsection]
 \setcounter{theo}{0}
 
-% Redefine the theorem numbering so that section 0 displays as 1
-\renewcommand{\thetheo}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{theo}}
+\renewcommand{\thetheo}{\arabic{subsection}.\arabic{theo}}
 
 \newenvironment{theo}[2][]{%
     \refstepcounter{theo}%

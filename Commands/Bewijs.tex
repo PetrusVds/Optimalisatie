@@ -1,12 +1,11 @@
 %------------------------------------------------
-% Proof Environment with Adjusted Numbering
+%                Proof Environment 
 %------------------------------------------------
 
-\newcounter{prf}[section]
+\newcounter{prf}[subsection]
 \setcounter{prf}{0}
 
-% Redefine the proof numbering so that section 0 displays as 1
-\renewcommand{\theprf}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{prf}}
+\renewcommand{\theprf}{\arabic{subsection}.\arabic{prf}}
 
 \newenvironment{prf}[2][]{%
     \refstepcounter{prf}%

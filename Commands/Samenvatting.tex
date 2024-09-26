@@ -1,12 +1,11 @@
 %------------------------------------------------
-% Summary Environment with Adjusted Numbering
+%               Summary Environment
 %------------------------------------------------
 
-\newcounter{summ}[section]
+\newcounter{summ}[subsection]
 \setcounter{summ}{0}
 
-% Redefine the summary numbering so that section 0 displays as 1
-\renewcommand{\thesumm}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{summ}}
+\renewcommand{\thesumm}{\arabic{subsection}.\arabic{summ}}
 
 \newenvironment{summ}[2][]{%
     \refstepcounter{summ}%

@@ -1,12 +1,11 @@
 %------------------------------------------------
-% Lemma Environment with Adjusted Numbering
+%                Lemma Environment 
 %------------------------------------------------
 
-\newcounter{lem}[section]
+\newcounter{lem}[subsection]
 \setcounter{lem}{0}
 
-% Redefine the lemma numbering so that section 0 displays as 1
-\renewcommand{\thelem}{\ifnum\value{section}=0 1\else\arabic{section}\fi.\arabic{lem}}
+\renewcommand{\thelem}{\arabic{subsection}.\arabic{lem}}
 
 \newenvironment{lem}[2][]{%
     \refstepcounter{lem}%
