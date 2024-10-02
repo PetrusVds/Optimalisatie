@@ -26,21 +26,31 @@
     \begin{equation*}
         \forall x,y \in \Omega, \ \forall \lambda \in [0,1]: \ f(x + \lambda(y - x)) \leq f(x) + \lambda(f(y) - f(x)).
     \end{equation*}
-    or if ``all secants (i\@.e\@. a line segment between two points on the graph) are above graph''. This definition is equivalent to saying that the Epigraph of $f$, i\@.e\@. the set $\{(x,s) \in \mathbb{R}^n \times \R \ | \ x \in \Omega, \ s \geq f(x) \}$, is a convex set.
-    \vspace*{-0.1cm}
+    or if ``all secants (i\@.e\@. a line segment between two points on the graph) are above graph''. This definition is equivalent to saying that the Epigraph of $f$, i\@.e\@. the set $\{(x,s) \in \mathbb{R}^n \times \R \ | \ x \in \Omega, \ s \geq f(x) \}$, is a convex set. \\
+
+    \textbf{Note:} a concave function is the same but then with $\geq$ instead of $\leq$.
 \end{theo}
 
+\begin{pro}[Convex function]{proConvexFunction}
+    If $f: \ D \rightarrow \R$ and $\Omega_f = \{ (x,y) \ | \ x \in D, y \geq f(x)\}$ then the following holds:
+    \begin{equation*}
+        f \ \text{is convex} \ \Leftrightarrow \ \Omega_f \ \text{is convex}.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{pro}
+
 \begin{theo}[Convex optimization problem]{ConvexOptimization}
+    \vspace*{-0.1cm}
     An optimization problem with convex feasible set $\Omega$ and convex objective function $f: \ \Omega \rightarrow \R$ is called a convex optimization problem. 
 \end{theo}
 
-\newpage
-
-\begin{theo}[Globality of local minima of convex optimization problem]{LocalImpliesGlobal}
+\begin{pro}[Globality of local minima of convex optimization problem]{LocalImpliesGlobal}
+    \vspace*{-0.1cm}
     For a convex optimization problem, a local minimum is also a global one.
-\end{theo}
+\end{pro}
 
 \begin{prf}[Globality of local minima of convex optimization problem]{prfLocalImpliesGlobal}
+    \vspace*{-0.1cm}
     Regard a local minimum $x^*$ of the convex optimization problem 
     \begin{mini*}|l|
         {x \in \mathbb{R}^n}{f(x)}
@@ -49,7 +59,7 @@
     \end{mini*}
     We will show that for any point $y \in \Omega$ holds $f(y) \geq f(x^*)$, i\@.e\@. $x^*$ is a global minimum. \\
 
-    \vspace*{0.4cm}
+    % \vspace*{0.4cm}
 
     \begin{minipage}{0.78\textwidth}
         First we choose, using local optimality, a neighborhood $\mathcal{N}$ of $x^*$ such that for all $\tilde{x} \in \Omega \cap \mathcal{N}$ holds $f(\tilde{x}) \geq f(x^*)$. Second, we regard the connecting line between $x^*$ and $y$. This line is completely contained in $\Omega$ due to the convexity of $\Omega$. Now we choose a point $\tilde{x}$ on this line such that it is in the neighborhood, but not equal to $x^*$, i\@.e\@. $\tilde{x} = x^* + \lambda(y - x^*)$ for some $\lambda \in (0,1)$, and $\tilde{x} \in \Omega \cap \mathcal{N}$. Due to local optimality, we have $f(\tilde{x}) \geq f(x^*)$, and due to convexity we have
@@ -60,16 +70,18 @@
     \begin{minipage}{0.2\textwidth}
         \includegraphics[scale = 0.6]{Images/Fundamental/ProofGlobalityLocal.png}
     \end{minipage}
-    \vspace*{0.4cm}
+    \vspace*{0.2cm}
 
     It follows that $\lambda(f(y) - f(x^*)) \geq 0$, and since $\lambda \in (0,1)$, we have $f(y) \geq f(x^*)$, as desired. 
 \end{prf}
 
 \begin{theo}[Unconstrained optimization problem]{UnconstrainedOptimization}
+    \vspace*{-0.2cm}
     An optimization problem with no constraints, i\@.e\@. $g(x) = 0$ and $h(x) \geq 0$ are empty, is called an unconstrained optimization problem. 
 \end{theo}
 
 \begin{ex}[Nonlinear Programming (NLP)]{NLP}
+    \vspace*{-0.2cm}
     Nonlinear Programming Problems are poblems of the following form:
     \begin{mini*}|l|
         {x \in \mathbb{R}^n}{f(x)}
@@ -78,6 +90,7 @@
         \addConstraint{h(x) \geq 0},
     \end{mini*}
     where $f: \ \R^n \rightarrow \R$, $g: \ \R^n \rightarrow \R^p$, and $h: \ \R^n \rightarrow \R^q$, are assumed to be continuously differentiable at least once.
+    \vspace*{-0.1cm}
 \end{ex}
 
 \begin{ex}[Linear Programming (LP)]{LP}
@@ -111,7 +124,7 @@
 \end{theo}
 
 \begin{theo}[Strictly convex QP]{StrictlyConvexQP}
-    If the Hessian matrix $B$ is positive definite (i\@.e\@. if $\forall z \in \mathbb{R}^n \setminus \{0\}: z^T Bz > 0$) we call the QP a strictly convex QP\@. Strictly convex QPs are a subset of convex QPs (see Theorem~\ref{ConvexQP}).
+    If the Hessian matrix $B$ is positive definite (i\@.e\@. if $\forall z \in \mathbb{R}^n: z^T Bz > 0$) we call the QP a strictly convex QP\@. Strictly convex QPs are a subset of convex QPs (see Theorem~\ref{ConvexQP}).
 \end{theo}
 
 \newpage

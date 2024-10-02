@@ -25,7 +25,7 @@
             \leq \frac{f(y) - f(x)}{y-x}.
     \end{equation*}
 
-    ``$\Leftarrow$'': To prove that $z = x + \lambda(y-x) = (1-\lambda)x + \lambda y$ holds that $f(z) \leq (1-\lambda)f(x) + \lambda f(y)$, we can use the equation from Theorem~\ref*{ConvexityC1} twice to get
+    ``$\Leftarrow$'': To prove that $z = x + \lambda(y-x) = (1-\lambda)x + \lambda y$ holds that $f(z) \leq (1-\lambda)f(x) + \lambda f(y)$, we can use the equation from Theorem~\ref{ConvexityC1} twice to get
     \begin{equation*}
         f(x) \geq f(z) + \nabla f(z)^T(x-z) \ \ \text{and} \ \ f(y) \geq f(z) + \nabla f(z)^T(y-z),
     \end{equation*}
@@ -35,6 +35,121 @@
     \end{equation*}
     \vspace{-0.75cm}
 \end{prf}
+
+\begin{theo}[Generalized Inequality for Symmetric Matrices]{GeneralizedInequalityForSymmetricMatrices}
+    We write for a symmetric matrix $B = B^T$, $B \in \R^{n \times n}$ that ``$B \succeq 0$'' if and only if $B$ is positive semi-definite, i\@.e\@., 
+    \begin{equation*}
+        \forall z \in \R^n: \ z^T B z \geq 0,
+    \end{equation*}
+    or, equivalently, if all (real) eigenvalues of $B$ are non-negative.
+\end{theo}
+
+\begin{theo}[$O(\cdot)$]{BigODot}
+    For a function $f: \R^n \rightarrow \R^m$, we write 
+    \begin{equation*}
+        f(x) = O(g(x))
+    \end{equation*} 
+    if and only if there exists a constant $C > 0$ and a neighborhood $\mathcal{N}$ of $0$ such that 
+    \begin{equation*}
+        \forall x \in \mathcal{N}: \ \| f(x) \| \leq C g(x),
+    \end{equation*} 
+    i\@.e\@. ``$f$ shrinks as fast as $g$''.
+\end{theo}
+
+\begin{theo}[$o(\cdot)$]{SmallODot}
+    For a function $f: \R^n \rightarrow \R^m$, we write 
+    \begin{equation*}
+        f(x) = o(g(x))
+    \end{equation*} 
+    if and only if there exists a neighborhood $\mathcal{N}$ of $0$ and a function $c: \mathcal{N} \rightarrow \R$ with $\lim_{x \rightarrow 0} c(x) = 0$ such that 
+    \begin{equation*}
+        \forall x \in \mathcal{N}: \ \| f(x) \| \leq c(x) g(x),
+    \end{equation*} 
+    i\@.e\@. ``$f$ shrinks faster than $g$''.
+\end{theo}
+
+\begin{theo}[Convexity for $C^2$ functions]{ConvexityC2}
+    Assume that $f: \ \Omega \rightarrow \R$ is twice continuously differentiable and $\Omega$ is convex and open. Then holds that $f$ is convex if and only if
+    \begin{equation*}
+        \forall x \in \Omega: \ \nabla^2 f(x) \succeq 0,
+    \end{equation*}
+    i\@.e\@. the Hessian of $f$ is positive semi-definite.
+\end{theo}
+
+\begin{prf}[Convexity for $C^2$ functions]{prfConvexityC2}
+    To prove that the Theorem~\ref{ConvexityC1} implies the Theorem~\ref{ConvexityC2}, we can use a second order Taylor expansion of $y$ at $x$ in an arbitrary direction $p$:
+    \begin{equation*}
+        f(x + tp) = f(x) + t \nabla {f(x)}^T p + \frac{t^2}{2} p^T \nabla^2 f(x) p + o(t^2\|p\|).
+    \end{equation*}
+    From this we obtain that
+    \begin{equation*}
+        p^T \nabla^2 f(x) p = \lim_{t \rightarrow 0} \frac{2}{t^2} \left(\underset{(\ref*{ConvexityC1}): \ \geq 0}{\underbrace{f(x + tp) - f(x) - t \nabla {f(x)}^T p}}\right) \geq 0.
+    \end{equation*}
+    Conversely, to prove the other direction, we use the Taylor rest term formula with some arbitrary $\theta \in (0,1)$:
+    \begin{equation*}
+        f(y) = f(x) + \nabla {f(x)}^T(y-x) + \underset{(\ref*{ConvexityC2}): \ \geq 0}{\underbrace{\frac{1}{2}t^2 {(y-x)}^T \nabla^2 f(x + \theta(y-x)) (y-x)}}. 
+    \end{equation*}
+    \vspace{-0.7cm}
+\end{prf}
+
+\begin{pro}[Convexity perserving operations on convex functions]{ConvexPerservingOptsConvexFunctions}
+    The following operations preserve the convexity of a function:
+    \begin{enumerate}
+        \item 
+            Affine input transformation: If $f: \ \Omega \rightarrow \R$ is convex, then also
+            \begin{equation*}
+                A \in \R^{n \times m}: \ \tilde{f}(x) = f(Ax + b)
+            \end{equation*}
+            is convex on the domain $\tilde{\Omega} = \{x \ | \ Ax + b \in \Omega\}$.
+        \item 
+            Concatenation with monotone convex function: If $f: \ \Omega \rightarrow \R$ is convex and $g: \ \R \rightarrow \R$ is convex and monotonely increasing, then the composition $g \circ f$ is convex.
+        \item 
+            The supremum over a set of convex functions $f_i(x)$, $i \in I$, i\@.e\@.,
+            \begin{equation*}
+                f(x) = \sup_{i \in I} f_i(x)
+            \end{equation*}
+            is convex.
+    \end{enumerate}
+    \vspace*{-0.2cm}
+\end{pro}
+
+\begin{prf}[Convexity perserving operations on convex functions]{prfConvexPerservingOptsConvexFunctions}
+    \begin{enumerate}
+        \item 
+            Not seen in this course.
+        \item 
+            Recall that $g$ is a convex and monotonely increasing function, then: 
+            \begin{equation*}
+                \nabla^2 (g \circ f) = \underbrace{g''(f(x))}_{\geq 0} \underbrace{\nabla f(x) \nabla {f(x)}^T }_{\succeq 0} + \underbrace{g'(f(x))}_{\geq 0} \underbrace{\nabla^2 f(x)}_{\succeq 0} \succeq 0,
+            \end{equation*}
+            i\@.e\@. $g \circ f$ is convex, since the Hessian is positive semi-definite.
+        \item 
+            Epigraph of $f$ is the intersection of the epigraphs of $f_i$, which are convex.
+    \end{enumerate}
+    \vspace*{-0.2cm}
+\end{prf}
+
+\begin{theo}[Concave function]{Concave}
+    A function $f: \ \Omega \rightarrow \R$ is concave if and only if $-f$ is convex.
+\end{theo}
+
+% \begin{theo}[Convex Maximization Problem]{ConvexMaximizationProblem}
+%     A maximization problem
+%     \begin{maxi*}|l|
+%         {x \in \mathbb{R}^n}{f(x)}
+%         {}{}
+%         \addConstraint{x \in \Omega}.
+%     \end{maxi*}
+%     is called a convex maximization problem if $f$ is concave and $\Omega$ is convex. Naturally, the dual problem is then a convex minimization problem of the form 
+%     \begin{mini*}|l|
+%         {x \in \mathbb{R}^n}{-f(x)}
+%         {}{}
+%         \addConstraint{x \in \Omega}.
+%     \end{mini*}
+%     \vspace*{-0.5cm}
+% \end{theo}
+
+% \newpage
 
 \begin{theo}[Convexity of Sublevel subsets]{ConvexitySublevelSubset}
     \vspace*{-0.5cm}
@@ -63,10 +178,25 @@
 \end{prf}
 
 \begin{pro}[Convexity perserving operations on convex sets]{ConvexityPreservingOperations}
-    The following operations preserve convexity of a set:
+    The following operations preserve the convexity of a set:
     \begin{enumerate}
         \item The intersection of finitely or infinitely many convex sets is convex.
         \item Affine image: if $\Omega$ is convex, then for $A \in \R^{m \times n}$, $b \in \R^m$ also the set $A\Omega + b = \{ y \in \R^m \ | \ \exists x \in \Omega : y = Ax + b \}$ is convex.
         \item Affine pre-image: if $\Omega$ is convex, then for $A \in \R^{n \times m}$, $b \in \R^n$ also the set $\{ z \in \R^m \ | \ Az + b \in \Omega \}$ is convex.
     \end{enumerate}
 \end{pro}
+
+\begin{ex}[Convex Feasible set]{ConvexFeasibleSet}
+    If $\forall i \in [1,m]: f_i : \ \R^n \rightarrow \R$ are convex functions, then the set 
+    \begin{equation*}
+        \Omega = \{x \in \R^n \ | \ f_i(x) \leq 0, \ i \in [1,m]\}
+    \end{equation*}
+    is a convex set, because it is the intersection of sublevel sets $\Omega_i$ of convex functions $f_i$, i\@.e\@.
+    \begin{align*}
+        \Omega 
+            &= \bigcap_{i=1}^m \Omega_i \\
+            &= \bigcap_{i=1}^m \ \{x \in \R^n \ | \ f_i(x) \leq 0 \}.
+    \end{align*}
+    \vspace{-0.5cm}
+\end{ex}
+
