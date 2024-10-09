@@ -1,0 +1,62 @@
+\begin{theo}[Estimation and Fitting Problems]{EstFitProblems}
+    Estimation and fitting problems are optimization problems with a special objective, namely a least squares objective. We define the estimation problem as
+    \begin{equation*}
+        \min_{x \in \R^n} \frac{1}{2} \| \eta - M(x) \|^2_2,
+    \end{equation*}
+    where $\eta \in \R^m$ is the measurement vector, $M: \R^n \to \R^m$ is the model function, and $x \in \R^n$ is the parameter vector.  Many models in estimation and fitting problems are linear functions of $x$. If $M$ is linear, $M(x) = Jx$, then $f(x) = \frac{1}{2} \| \eta - Jx \|^2_2$ which is a convex function, as $\nabla^2 f(x) = J^T J \succeq 0$. Therefore local minimizers are found by:
+    \begin{align*}
+        \nabla f(x) = 0 
+            &\Leftrightarrow J^T J x^* - J^T \eta = 0 \\
+            &\Leftrightarrow x^* = \underbrace{{(J^T J)}^{-1} J^T}_{J^+} \eta
+    \end{align*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Pseudo-inverse]{PseudoInverse}
+    $J^+$ is called the pseudo-inverse and is a generalization of the inverse matrix. If $J^T J \succ 0$, $J^+$ is given by 
+    \begin{equation*}
+        J^+ = {(J^T J)}^{-1} J^T.
+    \end{equation*}
+    So far, ${(J^T J)}^{-1}$ is only defined if $J^T J \succ 0$. THis holds if and only if $rank(J) = n$, i\@.e\@. if the collumds of $J$ are linearly independent. 
+\end{theo}
+
+\begin{theo}[Moore Penrose Pseudo Inverse]{MoorePenrose}
+    Assume $J \in \R^{m \times n}$ and that the singular value decomposition (SVD) of $J$ is given by $J = U \Sigma V^T$. Then, the Moore-Penrose pseudo-inverse $J^+$ is given by
+    \begin{equation*}
+        J^+ = V S^+ U^T,
+    \end{equation*}
+    where for
+    \begin{equation*}
+    S = 
+        \left[
+        \begin{array}{ccccccc}
+        \sigma_1 &  &  &  &  &  \\
+         & \sigma_2 &  &  &  &  \\
+         &  & \ddots &  &  & \\
+         &  &  & \sigma_r &  & \\
+         &  &  &  & 0 & & \\
+         &  &  &  & & \ddots & \\
+         &  &  &  & & & 0 \\
+        \hline
+        0 & \cdots & \cdots & 0 & \cdots & \cdots & 0
+        \end{array}
+        \right]
+    \quad \text{holds} \quad
+    S^+ = 
+        \left[
+        \begin{array}{ccccccc|c}
+            \sigma_1^{-1} &  &  &  &  & & & 0\\
+            & \sigma_2^{-1} &  &  &  & &  & \vdots \\
+            &  & \ddots &  &  & & & \vdots \\
+            &  &  & \sigma_r^{-1} & & & & 0\\
+            &  &  &  & 0 & & & \vdots\\
+            &  &  &  & & \ddots &  & \vdots\\
+            &  &  &  & & & 0 & 0\\
+        \end{array}
+        \right]
+    \end{equation*}
+\end{theo}
+
+\begin{lem}
+    For $\epsilon \rightarrow 0$
+\end{lem}

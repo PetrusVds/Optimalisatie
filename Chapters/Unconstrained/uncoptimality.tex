@@ -1,0 +1,96 @@
+\begin{theo}[Unconstrained optimization Problems]{Unconstrained}
+    We define the unconstrained optimization problem as 
+    \begin{equation*}
+        \min_{x \in D} f(x),
+    \end{equation*}
+    where we regard objective function $f: D \to \R$ that are defined on some open domain $D \subseteq \R^n$.
+\end{theo}
+
+\begin{theo}[Stationary Point]{StationaryPoint}
+    A point $\tilde{x}$ is called a stationary point of $f$ if and only if 
+    \begin{equation*}
+        \nabla f(\tilde{x}) = 0.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Descent Direction]{DescentDirection}
+    A vector $p \in \R^n$ is called a descent direction at $x$ if 
+    \begin{equation*}
+        \nabla f(x)^T p < 0.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[First Order Necessary Conditions (FONC)]{FONC}
+    If $x^* \in D$ is a local minimizer of $f: D \to \R$ and $f \in C^1$ then 
+    \begin{equation*}
+        \nabla f(x^*) = 0.
+    \end{equation*} 
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{prf}[First Order Necessary Conditions (FONC)]{prfFONC}
+    Let us assume for contradiction that $\nabla f(x^*) \neq 0$. Then $p = -\nabla f(x^*)$ would be a descent direction in which the objective could be improved, as follows: 
+
+    \begin{framed}
+        As D is open and $f \in C^1$, we could find a $t > 0$ that is small enough so that for all $\tau \in [0,t]$ holds $x^* + \tau p \in D$ and $\nabla {f(x^* + \tau p)}^T p < 0$. By Taylor's theorem, we would have for some $\theta \in (0,1)$ that
+        \begin{equation*}
+            f(x^* + t p) = f(x^*) + \underbrace{t \nabla {f(x^* + \theta t p)}^T p}_{<0} < f(x^*).
+        \end{equation*}
+        \vspace*{-0.3cm}
+    \end{framed}
+    \vspace*{-0.3cm}
+\end{prf}
+
+\begin{theo}[Second Order Necessary Conditions (SONC)]{SONC}
+    If $x^* \in D$ is a local minimizer of $f: D \to \R$ and $f \in C^2$ then
+    \begin{equation*}
+        \nabla^2 f(x^*) \succeq 0.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{prf}[Second Order Necessary Conditions (SONC)]{prfSONC}
+    Assume, for the sake of contradiction, that $\nabla^2 f(x^*) \prec 0$. This implies the existence of a vector $p \in \R^n$ such that $p^T \nabla^2 f(x^*) p < 0$. In this case, the objective function could be improved in the direction of $p$. By choosing a sufficiently small $t > 0$, we can ensure that for all $\tau \in [0,t]$, the following holds:
+    \begin{equation*}
+        p^T \nabla^2 f(x^* + \tau p) p < 0.
+    \end{equation*}
+    Applying Taylor's theorem, we would have for some $\theta \in (0,1)$ that
+    \begin{equation*}
+        f(x^* + t p) = f(x^*) + \underbrace{t \nabla {f(x^*)}^T p}_{=0} + \frac{t^2}{2} \underbrace{p^T \nabla^2 f(x^* + \theta p)}_{<0} p < f(x^*),
+    \end{equation*}
+    which leads to a contradiction.
+\end{prf}
+
+\begin{theo}[Convex First Order Sufficient Conditions (cFOSC)]{cFOSC}
+    Assume that $f: D \to \R$ is convex and $f \in C^1$. If $x^* \in D$ is a stationary point of $f$, then $x^*$ is a global minimizer of $f$.
+\end{theo}
+
+\begin{theo}[Second Order Sufficient Conditions (SOSC)]{SOSC}
+    Assume that $f: D \to \R$ and $f \in C^2$. If $x^* \in D$ is a stationary point of $f$ and $\nabla^2 f(x^*) \succ 0$, then $x^*$ is a strict local minimizer of $f$.
+\end{theo}
+
+\begin{prf}[Second Order Sufficient Conditions (SOSC)]{prfSOSC}
+    We can choose a sufficiently small closed ball $B$ around $x^*$ so that for all $x \in B$ holds $\nabla^2 f(x) \succ 0$. Restricted to this ball, we have a convex problem, so that Theorem~\ref{cFOSC} together with stationarity of $x^*$ implies that $x^*$ is a global minimizer of $f$. To prove that it is strict, we look for any $x\in B\backslash x^*$ at the Taylor expansion, which yields with some $\theta \in (0,1)$:
+    \begin{equation*}
+        f(x) = f(x^*) + \underbrace{\nabla {f(x^*)}^T (x - x^*)}_{=0} + \frac{1}{2} \underbrace{{(x - x^*)}^T \nabla^2 f(x^* + \theta (x - x^*)) (x - x^*)}_{>0} > f(x^*).
+    \end{equation*}
+    \vspace{-0.5cm}
+\end{prf}
+
+\begin{theo}[Stability of Parametric Solutions]{Stability of Parametric Solutions}
+    Assume that $f: D \times \R^m \to \R$, and regard the minimization of $f(\cdot,\tilde{a})$ for a given fixed value of $\tilde{a} \in \R^m$. If $\tilde{x} \in D$ satisfies the SOSC (see Theorem~\ref{SOSC}), then there is a neighborhood $\mathcal{N} \subset \R^m$ around $\tilde{a}$ such that the parametric minimizer function $x^*(a)$ is well-defined for all $a \in \mathcal{N}$ (i\@.e\@. there is a unique minimizer $x^*(a)$ for each $a \in \mathcal{N}$), is differentiable in $\mathcal{N}$, and $x^*(\tilde{a}) = \tilde{x}$. Its derivative at $\tilde{a}$ is given by
+    \begin{equation*}
+        \frac{\partial(x^*(\tilde{a}))}{\partial a} = -{\left(\nabla^2_x f(\tilde{x}, \tilde{a})\right)}^{-1} \frac{\partial \left(\nabla_x f(\tilde{x}, \tilde{a})\right)}{\partial a}. 
+    \end{equation*}
+    Moreover, each such $x^*(a)$ with $a \in \mathcal{N}$ satisfies again the SOSC and is thus a strict local minimizer.
+\end{theo}
+
+\begin{prf}[Stability of Parametric Solutions]{prfStability of Parametric Solutions}
+    The existence of the differentiable map $x^*: \mathcal{N} \rightarrow D$ follows from the implicit function theorem applied to the stationarity condition $\nabla_x f(x^*(a), a) = 0$. The derivative of $x^*(a)$ at $\tilde{a}$ is given by
+    \begin{equation*}
+        \frac{d(\nabla_x f(x^*(a),a))}{da} = \underbrace{\frac{\partial \left(\nabla_x f(x^*(a), a)\right)}{\partial x}}_{= \nabla^2_x f} \frac{\partial x^*(a)}{\partial a} + \frac{\partial \left(\nabla_x f(x^*(a), a)\right)}{\partial a} = 0
+    \end{equation*}
+    The fact that all points $x^*(a)$ satisfy the SOSC follows from the continuity of the second derivative.
+\end{prf}
