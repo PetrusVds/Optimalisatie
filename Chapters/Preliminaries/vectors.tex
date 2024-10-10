@@ -1,0 +1,112 @@
+\begin{theo}[Vector Space $\R^n$]{Rn}
+    The vector space $\R^n$ is the set of all $n$-dimensional column vectors with real components. The space $\R^n$ is equipped with the following operations: \\
+
+    \begin{itemize}
+        \begin{minipage}{0.48\textwidth}
+            \item 
+            component-wise addition:
+            \begin{equation*}
+                \hspace{-1.5cm}
+                x + y = 
+                \begin{bmatrix}
+                    x_1 \\
+                    x_2 \\
+                    \vdots \\
+                    x_n
+                \end{bmatrix}
+                +
+                \begin{bmatrix}
+                    y_1 \\
+                    y_2 \\
+                    \vdots \\
+                    y_n
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    x_1 + y_1 \\
+                    x_2 + y_2 \\
+                    \vdots \\
+                    x_n + y_n
+                \end{bmatrix}
+            \end{equation*}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+            \item
+            scalar multiplication:
+            \begin{equation*}
+                \hspace{-2cm}
+                \alpha x = 
+                \begin{bmatrix}
+                    \alpha x_1 \\
+                    \alpha x_2 \\
+                    \vdots \\
+                    \alpha x_n
+                \end{bmatrix}
+            \end{equation*}
+        \end{minipage}
+    \end{itemize}
+\end{theo}
+
+\begin{theo}[Dot product]{DotProduct}
+    The dot product of two vectors $x, y \in \R^n$ is defined as the scalar 
+    \begin{equation*}
+        x \cdot y = x^T y = \sum_{i=1}^n x_i y_i.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Norm]{Norm}
+    A norm $\| \cdot \|$ on $\R^n$ is a function $\| \cdot \|: \R^n \to \R$ satisfying the following:
+    \begin{itemize}
+        \item non-negativity: $\|x\| \geq 0$ for any $x \in \R^n$; $\|x\| = 0$ if and only if $x = 0$,
+        \item positive homogeneity: $\|\alpha x\| = |\alpha| \|x\|$ for any $x \in \R^n$ and $\alpha \in \R$,
+        \item triangle inequality: $\|x + y\| \leq \|x\| + \|y\|$ for any $x, y \in \R^n$.
+    \end{itemize}
+    \vspace*{-0.3cm}
+\end{theo}
+
+\begin{theo}[$\ell_p$-norms]{lpnorms}
+    The class of $\ell_p$-norms is defined by 
+    \begin{equation*}
+        \|x\|_p = {\left( \sum_{i=1}^n |x_i|^p \right)}^{\frac{1}{p}}
+    \end{equation*}
+    which includes the following special cases:
+    \begin{itemize}
+        \item $\ell_1$-norm: $\|x\|_1 = \sum_{i=1}^n |x_i|$,
+        \item $\ell_2$-norm: $\|x\| = \|x\|_2 = {\left( \sum_{i=1}^n x_i^2 \right)}^{\frac{1}{2}}$,
+        \item $\ell_\infty$-norm: $\|x\|_\infty = \max_{i=1,\ldots,n} |x_i|$.
+    \end{itemize}
+    \vspace*{-0.3cm}
+\end{theo}
+
+\begin{theo}[Angle between two vectors]{Angle}
+    The angle $\angle(x,y)$ between two vectors $x, y \in \R^n$ is given by
+    \begin{equation*}
+        \angle(x,y) = \arccos \left( \frac{x \cdot y}{\|x\| \|y\|} \right).
+    \end{equation*}
+    We say that two vectors $x, y \in \R^n$ are 
+    \begin{itemize}
+        \item orthogonal if $\angle(x,y) = \frac{\pi}{2}$, i\@.e\@. $x \cdot y = 0$,
+        \item aligned if $\angle(x,y) = 0$,
+        \item anti-aligned if $\angle(x,y) = \pi$,
+        \item parallel if $\angle(x,y) = 0$ or $\angle(x,y) = \pi$,
+        \item at an acute angle if $\angle(x,y) < \frac{\pi}{2}$,
+        \item at an obtuse angle if $\angle(x,y) > \frac{\pi}{2}$.
+    \end{itemize}
+\end{theo}
+
+\begin{theo}[Cauchy-Schwarz inequality]{CauchySchwarz}
+    For any two vectors $x, y \in \R^n$, the following inequality holds:
+    \begin{equation*}
+        |x \cdot y| \leq \|x\| \|y\|.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Hölder inequality]{Holder}
+    Let $p \geq 1$. For any $x,y \in \R^n$, the following inequality holds:
+    \begin{equation*}
+        |x \cdot y| \leq \|x\|_p \|y\|_q,
+    \end{equation*}
+    where $q = \frac{p}{p-1}$ is the Hölder conjugate of $p$.
+\end{theo}

@@ -1,0 +1,238 @@
+\begin{ex}[Types of matrices]{TypesMatrices}
+    A matrix $A \in \R^{m \times n}$ is said to be
+    \begin{itemize}
+        \item 
+            the zero matrix, denoted by $0$, if all its entries are zero,
+        \item 
+            a square matrix if $m = n$,
+        \item 
+            the identity matrix if it is square and all its diagonal entries are one,
+        \item 
+            a diagonal matrix if all its off-diagonal entries are zero,
+        \item 
+            an upper triangular matrix if all its entries below the diagonal are zero,
+        \item 
+            a lower triangular matrix if all its entries above the diagonal are zero,
+        \item
+            a symmetric matrix if it is square and $A = A^T$,
+        \item 
+            an orthogonal matrix if it is square and $AA^T = A^T A = I$,
+        \item 
+            a non-singular matrix if it is square and there exists another square matrix $B \in \R^{n \times n}$, the inverse of $A$, such that 
+            \begin{equation*}
+                AB = BA = I
+            \end{equation*} 
+        \item 
+            a dyadic matrix if it is of the form $A = uv^T$ for some vectors $u, v \in \R^n$.
+    \end{itemize}
+\end{ex}
+
+\begin{theo}[Range]{Range}
+    Given a matrix $A \in \R^{m \times n}$, the range of $A$ is the set of $m$-dimensional vectors that can be expressed as $Ax$ for some $n$-dimensional vector $x$, and we denote it by 
+    \begin{equation*}
+        \mathcal{R}(A) = \{ Ax \ | \ x \in \R^n \}
+    \end{equation*}
+    In other words, it is the set of vectors that can be expressed as linear combinations of the columns of $A$.
+    % \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Kernel]{Kernel}
+    Given a matrix $A \in \R^{m \times n}$, the kernel of $A$ is the set of $n$-dimensional vectors that are mapped to the zero vector by $A$, and we denote it by
+    \begin{equation*}
+        \mathcal{N}(A) = \{ x \in \R^n \ | \ Ax = 0 \}
+    \end{equation*}
+    In other words, it is the set of vectors that are orthogonal to the columns of $A$.
+    % \vspace*{-0.5cm}
+\end{theo}
+
+\newpage
+
+\begin{theo}[Rank]{Rank}
+    Given a matrix $A \in \R^{m \times n}$, the rank of $A$ is the dimension of its range, i\@.e\@.
+    \begin{equation*}
+        \text{rank}(A) = \dim(\mathcal{R}(A))
+    \end{equation*}
+    \textbf{Note:} The sum of the dimensions of the range of $A$ and the null space (kernel) of $A$ is equal to the number of columns $n$:
+    \begin{equation*}
+        \dim(\mathcal{R}(A)) + \dim(\mathcal{N}(A)) = n
+    \end{equation*}
+    \vspace{-0.5cm}
+\end{theo}
+
+\begin{theo}[Fundamental theorem of Linear Algebra]{FunLinAlg}
+    For any matrix $A \in \R^{m \times n}$, it holds that $\mathcal{N}(A) \perp \mathcal{R}(A^T)$ and $\mathcal{N}(A^T) \perp \mathcal{R}(A)$, therefore we have 
+    \begin{align*}
+        \R^n &= \mathcal{N}(A) \oplus \mathcal{R}(A^T) \\
+        \R^m &= \mathcal{N}(A^T) \oplus \mathcal{R}(A)
+    \end{align*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Singular Value Decomposition]{SVD}
+    Every matrix $A \in \R^{m \times n}$ of rank $r$ can be written as
+    \begin{equation*}
+        A = U \Sigma V^T = \left[
+            \begin{array}{cc}
+            U_1 & U_2
+            \end{array}
+            \right]
+            \left[
+            \begin{array}{cc}
+            \Sigma_1 & 0 \\
+            0 & 0
+            \end{array}
+            \right]
+            \left[
+            \begin{array}{c}
+            V_1^\top \\
+            V_2^\top
+            \end{array}
+            \right]
+    \end{equation*}
+    where $U \in \R^{m \times m}$ and $V \in \R^{n \times n}$ are orthogonal matrices, $U_1 \in \R^{m \times r}$ , $V_1 \in \R^{n \times r}$ and 
+    \begin{equation*}
+        \Sigma_1 = \text{diag}(\sigma_1, \sigma_2, \ldots, \sigma_r) \in \R^{r \times r}
+    \end{equation*}
+    is a diagonal matrix, where $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r > 0$ are the singular values of $A$. The columns of $U$ and $V$ are called the left and right singular vectors of $A$, respectively.
+\end{theo}
+
+\begin{pro}[Singular Value Decomposition]{proSVD}
+    The singular value decomposition of a matrix $A \in \R^{m \times n}$ gives orthogonal bases for the four fundamental subspaces related to A:
+    \begin{align*}
+        \mathcal{R}(A) &= \mathcal{R}(U_1), \quad \mathcal{N}(A^T) = \mathcal{R}(U_2) \\
+        \mathcal{R}(A^T) &= \mathcal{R}(V_1), \quad \mathcal{N}(A) = \mathcal{R}(V_2) \\
+    \end{align*}
+    \vspace{-1cm}
+\end{pro}
+
+\newpage
+
+\begin{theo}[Moore Penrose Pseudo Inverse]{MoorePenrose}
+    Assume $J \in \R^{m \times n}$ and that the singular value decomposition (SVD) of $J$ is given by $J = U \Sigma V^T$. Then, the Moore-Penrose pseudo-inverse $J^+$ is given by
+    \begin{equation*}
+        J^+ = V S^+ U^T,
+    \end{equation*}
+    where for
+    \begin{equation*}
+    S = 
+        \left[
+        \begin{array}{ccccccc}
+        \sigma_1 &  &  &  &  &  \\
+         & \sigma_2 &  &  &  &  \\
+         &  & \ddots &  &  & \\
+         &  &  & \sigma_r &  & \\
+         &  &  &  & 0 & & \\
+         &  &  &  & & \ddots & \\
+         &  &  &  & & & 0 \\
+        \hline
+        0 & \cdots & \cdots & 0 & \cdots & \cdots & 0
+        \end{array}
+        \right]
+    \quad \text{holds} \quad
+    S^+ = 
+        \left[
+        \begin{array}{ccccccc|c}
+            \sigma_1^{-1} &  &  &  &  & & & 0\\
+            & \sigma_2^{-1} &  &  &  & &  & \vdots \\
+            &  & \ddots &  &  & & & \vdots \\
+            &  &  & \sigma_r^{-1} & & & & 0\\
+            &  &  &  & 0 & & & \vdots\\
+            &  &  &  & & \ddots &  & \vdots\\
+            &  &  &  & & & 0 & 0\\
+        \end{array}
+        \right]
+    \end{equation*}
+\end{theo}
+
+\begin{pro}[Moore Penrose Pseudo Inverse]{proMoorePenrose}
+    If matrix $A \in \R^{m \times n}$ 
+    \begin{itemize}
+        \item 
+            is non-singular then 
+            \begin{equation*}
+                A^+ = A^{-1},
+            \end{equation*}
+        \item 
+            has full column rank, that is $r = n$, then 
+            \begin{equation*}
+                A^+A = VV^T = I,
+            \end{equation*}
+            i\@.e\@. $A^+$ is a left inverse of $A$,
+        \item 
+            has full row rank, that is $r = m$, then 
+            \begin{equation*}
+                AA^+ = UU^T = I,
+            \end{equation*}
+            i\@.e\@. $A^+$ is a right inverse of $A$.
+    \end{itemize}
+\end{pro}
+
+\begin{theo}[Orthogonal-triangular decomposition (QR)]{QR}
+    If $A \in \R^{m \times n}$, then there exists an orthogonal matrix $Q \in \R^{m \times m}$ and an upper triangular matrix $R \in \R^{m \times n}$ such that
+    \begin{equation*}
+        A = QR.
+    \end{equation*}
+    \vspace{-0.5cm}
+\end{theo}
+
+\newpage
+
+\begin{theo}[Eigenvalue decomposition]{EeigenvalueDecomp}
+    Any real symmetric matrix $A \in \R^{n \times n}$ can be decomposed as
+    \begin{equation*}
+        A = Q \Lambda Q^T,
+    \end{equation*}
+    where $Q \in \R^{n \times n}$ is orthogonal, i\@.e\@. $Q^T Q = I$, and $\Lambda \in \R^{n \times n}$ is diagonal with the eigenvalues of $A$ on the diagonal. The columns of $Q$ form an orthonormal set of eigenvectors.
+\end{theo}
+
+\begin{theo}[Symmetric positive semi-definite matrices]{SymmetricPosSemiDefMatrix}
+    Let $Q \in \mathbb{S}^n$ be a symmetric matrix. Then the following statements are equivalent:
+    \begin{enumerate}
+        \item $Q$ is positive semi-definite, i\@.e\@. $Q \succeq 0$,
+        \item all eigenvalues of $Q$ are non-negative, i\@.e\@. $\lambda_i(Q) \geq 0$ for all $i \in [1,n]$,
+        \item all principal minors of $Q$, i\@.e\@. the determinant of a submatrix obtained from $Q$ when the same set of rows and columns are stricken out, are non-negative,
+        \item $Q$ can be written as $Q = AA^T$ for some matrix $A \in \R^{n \times r}$ and $r$ is the rank of $Q$.
+    \end{enumerate}
+    \vspace*{-0.3cm}
+\end{theo}
+
+\begin{theo}[Cholesky factorization]{Cholesky}
+    If $A \in \R^{n \times n}$ is symmetric positive definite, then there exists a unique lower triangular matrix $L \in \R^{n \times n}$ with positive diagonal entries such that
+    \begin{equation*}
+        A = LL^T.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Matrix norms]{MatrixNorms}
+    For a matrix $A \in \R^{m \times n}$ and two vector norms $\|\cdot\|_p$ and $\|\cdot\|_q$, the induced matrix norm is defined as 
+    \begin{equation*}
+        \|A\|_{p,q} = \max_{x} \{ \|Ax\|_q \|x\|_p \leq 1 \}.
+    \end{equation*}
+    When $p = q$, we simply write $\|A\|_p$. 
+\end{theo}
+
+\begin{ex}[Spectral norm]{SpectralNorm}
+    The $\ell_2$-induced norm or spectral norm of a matrix $A \in \R^{m \times n}$ is defined as
+    \begin{equation*}
+        \|A\|_2 = \sqrt{\lambda_{\max}(A^T A)} = \sigma_{\max}(A),
+    \end{equation*}
+    where $\lambda_{\max}(A^T A)$ denotes the largest eigenvalue of $A^T A$ and $\sigma_{\max}(A)$ is the largest singular value of $A$.
+\end{ex}
+
+\begin{ex}[Frobenius norm]{Frobenius norm}
+    The Frobenius norm of a matrix $A \in \R^{m \times n}$ is defined as
+    \begin{equation*}
+        \|A\|_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n a_{ij}^2} = \sqrt{\text{tr}(A^T A)}.
+    \end{equation*}
+    \vspace{-0.5cm}
+\end{ex}
+
+% This is probably unnecessary
+% \begin{ex}[Nuclear norm]{Nuclear norm}
+%     The nuclear norm of a matrix $A \in \R^{m \times n}$ is defined as
+%     \begin{equation*}
+%         \|A\|_* = \sum_{i=1}^{\min\{m,n\}} \sigma_i(A),
+%     \end{equation*}
+%     where $\sigma_i(A)$ denotes the $i$-th singular value of $A$.
+% \end{ex}

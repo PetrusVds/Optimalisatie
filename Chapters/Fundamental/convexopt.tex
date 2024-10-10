@@ -44,30 +44,6 @@
     or, equivalently, if all (real) eigenvalues of $B$ are non-negative.
 \end{theo}
 
-\begin{theo}[$O(\cdot)$]{BigODot}
-    For a function $f: \R^n \rightarrow \R^m$, we write 
-    \begin{equation*}
-        f(x) = O(g(x))
-    \end{equation*} 
-    if and only if there exists a constant $C > 0$ and a neighborhood $\mathcal{N}$ of $0$ such that 
-    \begin{equation*}
-        \forall x \in \mathcal{N}: \ \| f(x) \| \leq C g(x),
-    \end{equation*} 
-    i\@.e\@. ``$f$ shrinks as fast as $g$''.
-\end{theo}
-
-\begin{theo}[$o(\cdot)$]{SmallODot}
-    For a function $f: \R^n \rightarrow \R^m$, we write 
-    \begin{equation*}
-        f(x) = o(g(x))
-    \end{equation*} 
-    if and only if there exists a neighborhood $\mathcal{N}$ of $0$ and a function $c: \mathcal{N} \rightarrow \R$ with $\lim_{x \rightarrow 0} c(x) = 0$ such that 
-    \begin{equation*}
-        \forall x \in \mathcal{N}: \ \| f(x) \| \leq c(x) g(x),
-    \end{equation*} 
-    i\@.e\@. ``$f$ shrinks faster than $g$''.
-\end{theo}
-
 \begin{theo}[Convexity for $C^2$ functions]{ConvexityC2}
     Assume that $f: \ \Omega \rightarrow \R$ is twice continuously differentiable and $\Omega$ is convex and open. Then holds that $f$ is convex if and only if
     \begin{equation*}

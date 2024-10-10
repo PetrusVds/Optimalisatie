@@ -1,0 +1,26 @@
+\begin{theo}[Linear Independence]{LinearIndependence}
+    A set of vectors $a_1, a_2, \ldots, a_n$ in $\R^n$ is said to be linearly independent if no vector in the collection can be expressed as a combination of the others. In other words
+    \begin{equation*}
+        \sum_{i=1}^m \lambda_i a_i = 0 \ \Rightarrow \ \forall i \in [1,m]: \ \lambda_i = 0
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Subspace]{Subspace}
+    A nonempty subset $S$ of $\R^n$ is called a subspace if for any real numbers $\lambda_1, \lambda_2$
+    \begin{equation*}
+        a_1, a_2 \in S \ \Rightarrow \ \lambda_1 a_1 + \lambda_2 a_2 \in S
+    \end{equation*}
+    A subspace always contains the zero element.
+\end{theo}
+
+\begin{theo}[Span]{Span}
+    Given a set of vectors $a_1, a_2, \ldots, a_n$ in $\R^n$, the set of linear combinations of these vectors is called the span, i\@.e\@.
+    \begin{equation*}
+        \text{span}\{a_1, a_2, \ldots, a_n\}  = \Big\{ y \in \R^n \ | \ y = \sum_{i=1}^m \lambda_i a_i \Big\}
+    \end{equation*}
+\end{theo}
+
+\begin{theo}[Basis]{Basis}
+    The subset $B = \{a_1, a_2, \ldots, a_n\}$ of $\R^n$ is called a basis if it is linearly independent and spans $\R^n$, i\@.e\@. it is a naximally independent subset of $\R^n$.
+\end{theo}

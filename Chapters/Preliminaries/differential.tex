@@ -1,0 +1,126 @@
+\begin{theo}[Lipschitz continuity]{Lipschitz}
+    \vspace*{-0.1cm}
+    A mapping $F: \R^n \to \R^m$ is Lipschitz continuous with Lipschitz constant $L$ if
+    \begin{equation*}
+        \| F(x) - F(y) \| \leq L \| x - y \| \quad \forall x,y \in \R^n.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Linear mapping]{LinearMapping}
+    \vspace*{-0.2cm}
+    A mapping $F: \R^n \to \R^m$ is linear if 
+    \begin{equation*}
+        \forall x,y \in \R^n, \ \forall \lambda_1,\lambda_2 \in \R: \ F(\lambda_1 x + \lambda_2 y) = \lambda_1 F(x) + \lambda_2 F(y).
+    \end{equation*}
+    % \textbf{Note:} a mapping $F$ is linear if and only if $F(x) = Ax$ for some matrix $A \in \R^{m \times n}$.
+    \vspace*{-0.6cm}
+\end{theo}
+
+\begin{theo}[Affine mapping]{AffineMapping}
+    \vspace*{-0.2cm}
+    A mapping $F: \R^n \to \R^m$ is affine if it is the sum of a linear mapping and a constant vector, i\@.e\@.
+    \begin{equation*}
+        \exists A \in  \R^{m \times n}, \ \exists b \in \R^m: \ F(x) = Ax + b.
+    \end{equation*}
+    \vspace{-0.6cm}
+\end{theo}
+
+\begin{theo}[Quadratic function]{QuadraticFunction}
+    \vspace*{-0.1cm}
+    A function $f: \R^n \to \R$ is quadratic if it can be written as
+    \begin{equation*}
+        f(x) = \frac{1}{2} x^T Q x + q^T x + c
+    \end{equation*}
+    for some matrix $Q \in \R^{n \times n}$, vector $q \in \R^n$, and scalar $c \in \R$.
+\end{theo}
+
+\begin{theo}[First-order Taylor expansion]{FirstTaylor}
+    \vspace*{-0.1cm}
+    Suppose that $f: \R^n \to \R$ is continuously differentiable at $x \in \R^n$. Then for all $y \in \R^n$, it holds that 
+    \begin{equation*}
+        f(y) = f(x) + \nabla {f(x)}^T (y - x) + o(\| y - x \|).
+    \end{equation*}
+    \vspace*{-0.6cm}
+\end{theo}
+
+\begin{lem}[Mean-value theorem]{Mean-value theorem}
+    \vspace*{-0.1cm}
+    Suppose that $f: \R^n \to \R$ is differentiable. Then for every $x,y \in \R^n$ there exists a $\tau \in (0,1)$ such that 
+    \begin{equation*}
+        f(y) = f(x) + {\nabla f(x + \tau(y - x))}^T (y - x),
+    \end{equation*}
+    Moreover, if $f$ is continuously differentiable, then 
+    \begin{equation*}
+        f(y) = f(x) + \int_0^1 {\nabla f(x + t(y - x))}^T (y - x) dt
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{lem}
+
+\begin{theo}[Hessian]{Hessian}
+    \vspace*{-0.2cm}
+    The Hessian of a function $f: \R^n \to \R$ is the matrix of second partial derivatives, i\@.e\@.
+    \begin{equation*}
+        \nabla^2 f(x) = \left[ \frac{\partial^2 f(x)}{\partial x_i \partial x_j} \right]_{i,j=1}^n
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
+
+\begin{theo}[Second-order Taylor expansion]{SecondTaylor}
+    Suppose that $f: \R^n \to \R$ is twice continuously differentiable at $x \in \R^n$. Then for all $y \in \R^n$, it holds that
+    \begin{equation*}
+        f(y) = f(x) + {\nabla {f(x)}}^T (y - x) + \frac{1}{2} {(y - x)}^T \nabla^2 f(x)(y-x) + o(\|y-x\|^2).
+    \end{equation*}
+    \vspace*{-0.4cm}
+\end{theo}
+
+\begin{theo}[Jacobian]{Jacobian}
+    The Jacobian of a mapping $F: \R^n \to \R^m$ is the matrix of transposed gradients, i\@.e\@.
+    \begin{equation*}
+        J_F(x) = \begin{bmatrix}
+            \nabla f_1(x)^\top \\
+            \nabla f_2(x)^\top \\
+            \vdots \\
+            \nabla f_m(x)^\top
+            \end{bmatrix}
+            \in \mathbb{R}^{m \times n}
+    \end{equation*}
+    \vspace*{-0.4cm}
+\end{theo}
+
+% \begin{theo}[Chain rule]{ChainRule}
+%     Let $G: \R^p \rightarrow \R^m$ and $H: \R^n \rightarrow \R^p$ be continuously differentiable mappings, and let $F = G \circ H$. Then the chain rule for differentiation states that the gradient of $F$ is 
+%     \begin{equation*}
+%         \nabla F(x) = \nabla H(X) \nabla G(H(x)) \in \R^{n \times m},
+%     \end{equation*}
+%     and the Jacobian of $F$ is
+%     \begin{equation*}
+%         J_F(x) = J_G(H(x))J_H(x) \in \R^{m \times n}.
+%     \end{equation*}
+%     \vspace*{-0.5cm}
+% \end{theo}
+
+\begin{app}[Mean-value theorem for vector-valued functions]{MeanValueVectors}
+    Suppose that $F: \R^n \to \R^m$ is continuously differentiable on $\R^n$. Then for every $x,y \in \R^n$ the following holds: 
+    \begin{equation*}
+        F(y) = F(x) + \int_0^1 J_F(x + t(y - x)) (y - x) dt.
+    \end{equation*}
+    \vspace{-0.3cm}
+\end{app}
+
+\begin{theo}[Implicit function theorem]{ImplicitFunction}
+    Let $F: \R^{n+m} \rightarrow \R^n$ be a continuously differentiable mapping of $x \in \R^n$ and $p \in \R^m$. If $x^* \in \R^n, p^* \in \R^m$ are such that 
+    \begin{enumerate}
+        \item $F(x^*, p^*) = 0$,
+        \item the partial Jacobian $J_{F_x}(x^*, p^*)$ is non-singular,
+    \end{enumerate}
+    then there exist open sets $S_{x^*} \subset \R^n, S_{p^*} \subset \R^m$ and a continuously differentiable function $g: S_{p^*} \rightarrow S_{x^*}$ such that 
+    \begin{equation*}
+        x^* = g(p^*) \quad \text{and} \quad F(g(p), p) = 0 \quad \forall p \in S_{p^*},
+    \end{equation*}
+    and 
+    \begin{equation*}
+        J_g(p^*) = -{(J_{F_x}(g(x^*), p^*))}^{-1} J_{F_p}(g(x^*), p^*).
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{theo}
