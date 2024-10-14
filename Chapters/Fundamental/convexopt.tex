@@ -36,14 +36,6 @@
     \vspace{-0.75cm}
 \end{prf}
 
-\begin{theo}[Generalized Inequality for Symmetric Matrices]{GeneralizedInequalityForSymmetricMatrices}
-    We write for a symmetric matrix $B = B^T$, $B \in \R^{n \times n}$ that ``$B \succeq 0$'' if and only if $B$ is positive semi-definite, i\@.e\@., 
-    \begin{equation*}
-        \forall z \in \R^n: \ z^T B z \geq 0,
-    \end{equation*}
-    or, equivalently, if all (real) eigenvalues of $B$ are non-negative.
-\end{theo}
-
 \begin{theo}[Convexity for $C^2$ functions]{ConvexityC2}
     Assume that $f: \ \Omega \rightarrow \R$ is twice continuously differentiable and $\Omega$ is convex and open. Then holds that $f$ is convex if and only if
     \begin{equation*}
@@ -230,8 +222,6 @@
    which implies that $x^*$ is a global optimizer.
 \end{prf}  
 
-\newpage
-
 \begin{theo}[Sufficient Condition for Convex NLP]{SufficientConditionConvexNLP}
     For a nonlinear optimization problem (NLP) in standard form
     \begin{mini*}|l|
@@ -273,4 +263,103 @@
         \end{itemize}
 \end{theo}
 
-TODO: examples
+\begin{ex}[Halfspace]{HalfSpace}
+    A halfspace 
+    \begin{equation*}
+        H_{\leq} = \{ x \in \R^n \ | \ a^T x \leq b \}
+    \end{equation*}
+    is a convex set, as the zero sublevel set of the affine (and therefore convex) function $f(x) = a^T x - b$, cf. Theorem~\ref{ConvexitySublevelSubset}. \\
+
+    \textbf{Note:} The opposite is not true; a function that has all its level sets convex is not necessarily convex.
+\end{ex}
+
+\begin{ex}[Polyhedral Set]{PolyhedralSet}
+    A polyhedral set $C \subset \R^n$ is defined as the intersection of a finite number of halfspaces, i\@.e\@.,
+    \begin{equation*}
+        C = \bigcap_{i= 1, \ldots, m} \{ x \in \R^n \ | \ a_i^T x \leq b_i \}.
+    \end{equation*}
+    Since the intersection of convex sets is convex, $C$ is a convex set if all the halfspaces are convex. \\
+
+    \textbf{Note:} A polyhedral set might contain equalities, i\@.e\@., 
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ Ax \leq b, \ Cx = d \}.
+    \end{equation*}
+    which can be written with just inequalities as such:
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ Ax \leq b, \ Cx \leq d, \ -Cx \leq -d \}.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{ex}
+
+\begin{ex}[Ellipsoid]{Ellipsoid}
+    If $P \in \R^{n \times n}$ is symmetric positive definite, then the ellipsoid
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ {(x-x_c)}^T P^{-1} (x-x_c) \leq 1 \}
+    \end{equation*}
+    is convex, as the $1$-sublevel set of the convex function $f(x) = {(x-x_c)}^T P^{-1} (x-x_c) - 1$, where $x_c$ is the center of the ellipsoid and $P$ is the shape matrix. The latter determines how far the ellipsoid extends in each direction from $x_c$; the lengths of the semi-axis are given by $\sqrt{\lambda_i}$, where $\lambda_i$ are the eigenvalues of $P$, while the eigenvectors of $P$ determine the orientation of the ellipsoid. When $P = r^2I$, the ellipsoid is a ball with radius $r$ around $x_c$, i\@.e\@.,
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ \|x - x_c\|_{2} \leq r \},
+    \end{equation*}
+    or, in general, the $p$-norm ball
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ \|x - x_c\|_{p} \leq r \}.
+    \end{equation*}
+    where the value of $p$ determines the shape of the ball, i\@.e\@.,
+    \vspace*{0.3cm}
+
+    \begin{itemize}
+        \begin{minipage}{0.33\textwidth}
+            \item 
+                $p = 1$: 
+                \begin{center}
+                    \hspace{-1.5cm}\includegraphics[scale = 0.2]{Images/Fundamental/ManhattanBall.png}
+                \end{center}
+        \end{minipage}
+        \begin{minipage}{0.33\textwidth}
+            \item 
+                $p = 2$: 
+                \begin{center}
+                    \hspace{-1.5cm}\includegraphics[scale = 0.2]{Images/Fundamental/EuclideanBall.png}
+                \end{center}
+        \end{minipage}
+        \begin{minipage}{0.33\textwidth}
+            \item 
+                $p = \infty$: 
+                \begin{center}
+                    \hspace{-1.5cm}\includegraphics[scale = 0.2]{Images/Fundamental/MaxBall.png}
+                \end{center}
+        \end{minipage}
+    \end{itemize}
+
+    \textbf{Note:} All images above are for $r = 1$.
+\end{ex}
+
+\begin{ex}[Convex cones]{Convex cones}
+    A set $C$ is said to be cone if
+    \begin{equation*}
+        \forall x: \ x \in C \ \Rightarrow \ \forall \lambda \geq 0: \ \lambda x \in C.
+    \end{equation*}
+    Moreover, $C$ is a convex cone if and only if it is closed under addition and multiplication with non-negative scalars, i\@.e\@.,
+    \begin{equation*}
+        \forall x,y \in C, \ \forall \lambda, \mu \geq 0: \ \lambda x + \mu y \in C.
+    \end{equation*}
+    \begin{minipage}{0.66\textwidth}
+        The following are examples of convex cones:
+        \begin{itemize}
+            \item 
+                Non-negative orthant: The set $C = \{ x \in \R^n \ | x \geq 0 \}$ is a convex cone. 
+            \item
+                Norm cones: The set $C = \{ (x,t) \in \R^n \times \R \ | \ \|x\|_p \leq t \}$ is a convex cone. For instance, the Lorenz cone or ice-cream cone, when $p = 2$, is shown on the right.
+            \item Positive semi-definite cone: The set $\mathcal{S}^n_+$ is a convex cone.
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}{0.32\textwidth}
+        \vspace{0.3cm}
+        \begin{center}
+            \includegraphics[scale = 0.25]{Images/Fundamental/LorenzCone.png}
+        \end{center}
+    \end{minipage}
+\end{ex}
+
+
+
