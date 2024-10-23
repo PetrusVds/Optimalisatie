@@ -15,7 +15,7 @@
             &= f(x) + \sum_{i=1}^l \lambda_i g_i(x) + \sum_{i=1}^m \mu_i h_i(x) \\
             &= f(x) + \lambda^T g(x) + \mu^T h(x).
     \end{align*}
-    Here, we have introduced Lagrange multipliers or dual variables $\lambda \in \mathbb{R}^l$ and strictly positive $\mu \in \mathbb{R}^m$. 
+    where $\lambda \in \mathbb{R}^l$ and $\mu \geq 0 \in \mathbb{R}^m$ are the Lagrange multipliers or dual variables.
 \end{theo}
 
 \begin{lem}[Lower Bound Property of Lagrangian]{LowerBoundPrimal}
@@ -39,7 +39,7 @@
     \begin{equation*}
         q(\lambda, \mu) = \inf_{x \in \mathbb{R}^n} \mathcal{L}(x, \lambda, \mu).
     \end{equation*}
-    \vspace*{-0.5cm}
+    \vspace*{-0.3cm}
 \end{theo}
 
 \begin{lem}[Lower Bound property of Lagrange Dual]{LowerBoundDual}
@@ -87,29 +87,110 @@
 \end{theo}
 
 \begin{theo}[Weak Duality]{Weak Duality}
-    \vspace*{-0.1cm}
+    % \vspace*{-0.1cm}
     Consider a primal-dual pair. Then, the following inequality holds:
     \begin{equation*}
         d^* \leq p^*.
     \end{equation*}
-    \vspace*{-0.7cm}
+    \vspace*{-0.5cm}
+    % \vspace*{-0.7cm}
 \end{theo}
 
 \begin{theo}[Strong Duality]{Strong Duality}
-    \vspace*{-0.1cm}
+    % \vspace*{-0.1cm}
     If the primal optimization problem is convex and the Slater condition (see Theorem~\ref{Slater}) holds, then strong duality holds, i\@.e\@.,
     \begin{equation*}
         d^* = p^*.
     \end{equation*}
-    \vspace{-0.7cm}
+    \vspace*{-0.5cm}
+    % \vspace{-0.7cm}
 \end{theo}
 
-\begin{theo}[Slater Condition]{Slater}    
+\newpage
+
+\begin{theo}[Slater Condition]{Slater}  
+    \vspace{-0.1cm}  
     If there exist one feasible point $\tilde{x}$ such that all non-linear inequalities are strictly satisfied of a primal convex optimization problem hold, then the Slater condition is satisfied. More explicitly, for a convex problem we must have affine equality constraints, $g(x) = Ax + b$, and the inequality constraint functions can be either affine or concave functions, thus without loss of generality assume that the first $q_1 \leq q$ inequalities are affine and the remaining ones concave. Then the Slater condition holds if and only if there exists an $\tilde{x}$ such that
     \begin{align*}
         A\tilde{x} + b &= 0, \\
         h_i(\tilde{x}) &\geq 0, \quad \text{for} \ i = 1, \ldots, q_1, \\
-        g_i(\tilde{x}) &> 0, \quad \text{for} \ i = q_1 + 1, \ldots, q. 
+        h_i(\tilde{x}) &> 0, \quad \text{for} \ i = q_1 + 1, \ldots, q. 
     \end{align*}
-    \vspace*{-0.5cm}
+    \textbf{Note:} This is trivially satisfied for LP and QP problems.
 \end{theo}
+
+\begin{theo}[KKT]{KKT}
+    \vspace{-0.1cm}
+    Consider the convex optimization problem with equality and inequality constraints, i.e.,
+    \begin{mini*}|s|
+        {x}{f(x)}{}{}
+        \addConstraint{g(x)}{= 0}{}
+        \addConstraint{h(x)}{\geq 0}{},
+    \end{mini*}
+    and assume that $f$ is convex, $g$ is affine, and $h$ is concave. Also assume that Slater's condition holds and all functions are differentiable. Then, the following statements are equivalent:
+    
+    \begin{enumerate}
+        \item $x^*$ is a primal optimal and $(\lambda^*, \mu^*)$ are dual optimal.
+        \item $(x^*, \lambda^*, \mu^*)$ satisfy the Karush-Kuhn-Tucker (KKT) conditions:
+    \end{enumerate}
+    
+    \begin{framed}
+        \begin{enumerate}
+            \item Stationarity:
+            $$
+            \nabla f(x) - \nabla g(x) \lambda - \nabla h(x) \mu = 0
+            $$
+            \item Primal feasibility:
+            $$
+            g(x) = 0
+            $$
+            \item Dual feasibility:
+            $$
+            h(x) \geq 0
+            $$
+            \item Non-negativity of Lagrange multipliers:
+            $$
+            \mu \geq 0
+            $$
+            \item Complementary slackness:
+            $$
+            \mu^T h(x) = 0
+            $$
+        \end{enumerate}
+    \end{framed}
+    
+    These KKT conditions, under the given assumptions, are necessary and sufficient for optimality.
+\end{theo}
+
+\newpage
+
+\begin{prf}[KKT]{prfKKT}
+    ``$\Rightarrow$'': 
+    Because of the assumptions, there is no duality gap. Thus, there is strong duality and we have:
+    \begin{align*}
+        p^* = d^* 
+            &= q(\lambda^*,\mu^*) \\
+            &= \inf_{x} \mathcal{L}(x,\lambda^*,\mu^*) \\
+            &= \inf_{x} f(x) + \lambda^{*T} g(x) + \mu^{*T} h(x) \\
+            &\leq f(x^*) + \lambda^{*T} g(x^*) + \mu^{*T} h(x^*) \\
+            &= p^* - \underbrace{{\mu^*}^T h(x^*)}_{\geq 0}. 
+    \end{align*}
+    This implies that ${\mu^*}^T h(x^*) = 0$ and $\nabla f(x) - \nabla g(x) \lambda^* - \nabla h(x) \mu^* = 0$. The remaining KKT conditions follow trivially. \\
+
+    ``$\Leftarrow$'': 
+    Since the assumptions still hold and the KKT condition of stationarity is satisfied for $(x^*, \lambda^*, \mu^*)$, we conclude that $x^*$ is a global minimizer of the convex function $\mathcal{L}(x, \lambda^*, \mu^*)$. Therefore we have:
+    \begin{align*}
+        q(\lambda^*,\mu^*) &= \mathcal{L}(x^*, \lambda^*, \mu^*) \\
+            &= f(x^*) - \underbrace{\lambda^*g(x^*)}_{= 0} - \underbrace{\mu^*h(x^*)}_{= 0} \\
+            &= f(x^*),
+    \end{align*}
+    with the last line following from the other KKT conditions. We conclude:
+    \begin{equation*}
+        p^* \leq f(x^*) = q(\lambda^*,\mu^*) \leq d^*.
+    \end{equation*}
+    The assumptions imply strong duality, and thus that $p^* = d^*$. Since we always have $d^* \leq p^*$, we conclude that the inequalities are in fact equalities. Consequently, $x^*$ is primal optimal and $(\lambda^*, \mu^*)$ are dual optimal.
+\end{prf}
+
+\begin{ex}[Dual Decomposition]{DualDecomposition}
+
+\end{ex}
