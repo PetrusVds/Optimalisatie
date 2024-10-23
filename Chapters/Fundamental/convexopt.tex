@@ -22,7 +22,7 @@
     \begin{equation*}
         \nabla f(x)^T(y-x) 
             = \lim_{\lambda \rightarrow 0}  \frac{f(x + \lambda(y-x)) - f(x)}{\lambda}
-            \leq \frac{f(y) - f(x)}{y-x}.
+            \leq f(y) - f(x).
     \end{equation*}
 
     ``$\Leftarrow$'': To prove that $z = x + \lambda(y-x) = (1-\lambda)x + \lambda y$ holds that $f(z) \leq (1-\lambda)f(x) + \lambda f(y)$, we can use the equation from Theorem~\ref{ConvexityC1} twice to get
@@ -45,7 +45,7 @@
 \end{theo}
 
 \begin{prf}[Convexity for $C^2$ functions]{prfConvexityC2}
-    To prove that the Theorem~\ref{ConvexityC1} implies the Theorem~\ref{ConvexityC2}, we can use a second order Taylor expansion of $y$ at $x$ in an arbitrary direction $p$:
+    ``$\Rightarrow$'': Recall that a second order Taylor expansion of $y$ at $x$ in an arbitrary direction $p$ is given by the following:
     \begin{equation*}
         f(x + tp) = f(x) + t \nabla {f(x)}^T p + \frac{t^2}{2} p^T \nabla^2 f(x) p + o(t^2\|p\|).
     \end{equation*}
@@ -53,11 +53,12 @@
     \begin{equation*}
         p^T \nabla^2 f(x) p = \lim_{t \rightarrow 0} \frac{2}{t^2} \left(\underset{(\ref*{ConvexityC1}): \ \geq 0}{\underbrace{f(x + tp) - f(x) - t \nabla {f(x)}^T p}}\right) \geq 0.
     \end{equation*}
-    Conversely, to prove the other direction, we use the Taylor rest term formula with some arbitrary $\theta \in (0,1)$:
+
+    ``$\Leftarrow$'': Conversely, to prove the other direction, we use Theorem~\ref{TaylorRest} with some arbitrary $\theta \in [0,1]$:
     \begin{equation*}
-        f(y) = f(x) + \nabla {f(x)}^T(y-x) + \underset{(\ref*{ConvexityC2}): \ \geq 0}{\underbrace{\frac{1}{2}t^2 {(y-x)}^T \nabla^2 f(x + \theta(y-x)) (y-x)}}. 
+        f(y) = f(x) + \nabla {f(x)}^T(y-x) + \underset{(\ref*{ConvexityC2}): \ \geq 0}{\underbrace{\frac{t^2}{2} {(y-x)}^T \nabla^2 f(x + \theta(y-x)) (y-x)}},
     \end{equation*}
-    \vspace{-0.7cm}
+    and thus $f$ is convex, since Theorem~\ref{ConvexityC1} trivially holds.
 \end{prf}
 
 \begin{pro}[Convexity perserving operations on convex functions]{ConvexPerservingOptsConvexFunctions}
@@ -150,7 +151,7 @@
     \begin{minipage}{0.56\textwidth}
         If $f: \ \Omega \rightarrow \R$ is a convex function, then all its level sets 
         \begin{equation*}
-            \text{lev}_{\leq \gamma}f = \{ \ x \in \Omega \ | \ f(x) \leq \gamma \ \}
+            \text{lev}_{\leq \gamma}f = \{x \in \Omega \ | \ f(x) \leq \gamma\}
         \end{equation*}
         are convex.
     \end{minipage}
@@ -203,6 +204,8 @@
     \vspace*{-0.5cm}
 \end{theo}
 
+\newpage
+
 \begin{prf}[Optimality condition for convex problems]{prfOptimalityConditionConvexProblems}
     ``$\Rightarrow$'': Assume for the sake of contradiction that $\exists y \in \Omega: \ \nabla {f(x^*)}^T(y - x^*) < 0$, then we could regard a Taylor expansion
     \begin{equation*}
@@ -237,7 +240,7 @@
         \item 
             the constraint set 
             \begin{equation*}
-                X = \{ \ x \in \R^n \ | \ g(x) = 0,\ h(x) \geq 0 \ \}
+                X = \{ x \in \R^n \ | \ g(x) = 0,\ h(x) \geq 0 \}
             \end{equation*}
             must be convex. Since we know that the intersection of convex sets is convex, we can write $X$ as the intersection of the sets $G$ and $H$:
             \begin{align*}

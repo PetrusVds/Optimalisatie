@@ -38,16 +38,14 @@
 \newpage
 
 \begin{theo}[First-order Taylor expansion]{FirstTaylor}
-    \vspace*{-0.1cm}
     Suppose that $f: \R^n \to \R$ is continuously differentiable at $x \in \R^n$. Then for all $y \in \R^n$, it holds that 
     \begin{equation*}
         f(y) = f(x) + \nabla {f(x)}^T (y - x) + o(\| y - x \|).
     \end{equation*}
-    \vspace*{-0.6cm}
+    \vspace*{-0.3cm}
 \end{theo}
 
 \begin{lem}[Mean-value theorem]{Mean-value theorem}
-    \vspace*{-0.1cm}
     Suppose that $f: \R^n \to \R$ is differentiable. Then for every $x,y \in \R^n$ there exists a $\tau \in (0,1)$ such that 
     \begin{equation*}
         f(y) = f(x) + {\nabla f(x + \tau(y - x))}^T (y - x),
@@ -56,7 +54,7 @@
     \begin{equation*}
         f(y) = f(x) + \int_0^1 {\nabla f(x + t(y - x))}^T (y - x) dt
     \end{equation*}
-    \vspace*{-0.5cm}
+    \vspace*{-0.3cm}
 \end{lem}
 
 \begin{theo}[Hessian]{Hessian}
@@ -65,7 +63,7 @@
     \begin{equation*}
         \nabla^2 f(x) = \left[ \frac{\partial^2 f(x)}{\partial x_i \partial x_j} \right]_{i,j=1}^n
     \end{equation*}
-    \vspace*{-0.5cm}
+    \vspace*{-0.3cm}
 \end{theo}
 
 \begin{theo}[Second-order Taylor expansion]{SecondTaylor}
@@ -73,8 +71,18 @@
     \begin{equation*}
         f(y) = f(x) + {\nabla {f(x)}}^T (y - x) + \frac{1}{2} {(y - x)}^T \nabla^2 f(x)(y-x) + o(\|y-x\|^2).
     \end{equation*}
-    \vspace*{-0.4cm}
+    \vspace*{-0.3cm}
 \end{theo}
+
+\begin{lem}[Taylor Rest Term theorem]{TaylorRest}
+    Suppose that $f: \R^n \to \R$ is continuously differentiable. Then for every $x,y \in \R^n$ there exists a $\theta \in [0,1]$ such that 
+    \begin{equation*}
+        f(y) = f(x) + \nabla {f(x)}^T (y - x) + \frac{1}{2} (y - x)^T \nabla^2 f(x + \theta(y - x)) (y - x).
+    \end{equation*}
+    \vspace*{-0.3cm}
+\end{lem}
+
+\newpage
 
 \begin{theo}[Jacobian]{Jacobian}
     The Jacobian of a mapping $F: \R^n \to \R^m$ is the matrix of transposed gradients, i\@.e\@.
@@ -101,8 +109,6 @@
 %     \end{equation*}
 %     \vspace*{-0.5cm}
 % \end{theo}
-
-\newpage
 
 \begin{app}[Mean-value theorem for vector-valued functions]{MeanValueVectors}
     Suppose that $F: \R^n \to \R^m$ is continuously differentiable on $\R^n$. Then for every $x,y \in \R^n$ the following holds: 

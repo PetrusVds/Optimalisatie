@@ -4,21 +4,6 @@
         \forall x,y \in \Omega, \ \forall \lambda \in [0,1]: \ x + \lambda(y - x) \in \Omega.
     \end{equation*}
     or if ``all connecting lines lie inside the set''.
-
-    % \begin{minipage}[t]{0.48\textwidth}
-    %     \centering
-    %     \includegraphics[width=0.6\textwidth]{Images/Fundamental/ConvexSet.png}
-    %     \\[1ex] % Adds some space between the image and the caption
-    %     \textbf{(a) Convex Set}
-    %     \label{fig:convex}
-    % \end{minipage}
-    % \begin{minipage}[t]{0.48\textwidth}
-    %     \centering
-    %     \includegraphics[width=0.6\textwidth]{Images/Fundamental/NonConvexSet.png}
-    %     \\[1ex] % Adds some space between the image and the caption
-    %     \textbf{(b) Non-Convex Set}
-    %     \label{fig:nonconvex}
-    % \end{minipage}
 \end{theo}
 
 \begin{theo}[Convex function]{ConvexFunction}
@@ -40,17 +25,17 @@
 \end{pro}
 
 \begin{theo}[Convex optimization problem]{ConvexOptimization}
-    \vspace*{-0.1cm}
+    % \vspace*{-0.1cm}
     An optimization problem with convex feasible set $\Omega$ and convex objective function $f: \ \Omega \rightarrow \R$ is called a convex optimization problem. 
 \end{theo}
 
 \begin{pro}[Globality of local minima of convex optimization problem]{LocalImpliesGlobal}
-    \vspace*{-0.1cm}
+    % \vspace*{-0.1cm}
     For a convex optimization problem, a local minimum is also a global one.
 \end{pro}
 
 \begin{prf}[Globality of local minima of convex optimization problem]{prfLocalImpliesGlobal}
-    \vspace*{-0.1cm}
+    % \vspace*{-0.1cm}
     Regard a local minimum $x^*$ of the convex optimization problem 
     \begin{mini*}|l|
         {x \in \mathbb{R}^n}{f(x)}
@@ -75,10 +60,11 @@
     It follows that $\lambda(f(y) - f(x^*)) \geq 0$, and since $\lambda \in (0,1)$, we have $f(y) \geq f(x^*)$, as desired. 
 \end{prf}
 
-\begin{theo}[Unconstrained optimization problem]{UnconstrainedOptimization}
-    \vspace*{-0.2cm}
-    An optimization problem with no constraints, i\@.e\@. $g(x) = 0$ and $h(x) \geq 0$ are empty, is called an unconstrained optimization problem. 
-\end{theo}
+% \begin{theo}[Unconstrained optimization problem]{UnconstrainedOptimization}
+%     \vspace*{-0.1cm}
+%     An optimization problem with no constraints, i\@.e\@. $g(x) = 0$ and $h(x) \geq 0$ are empty, is called an unconstrained optimization problem. 
+%     \vspace*{-0.1cm}
+% \end{theo}
 
 \begin{ex}[Nonlinear Programming (NLP)]{NLP}
     \vspace*{-0.2cm}
@@ -92,6 +78,8 @@
     where $f: \ \R^n \rightarrow \R$, $g: \ \R^n \rightarrow \R^p$, and $h: \ \R^n \rightarrow \R^q$, are assumed to be continuously differentiable at least once.
     \vspace*{-0.1cm}
 \end{ex}
+
+\newpage
 
 \begin{ex}[Linear Programming (LP)]{LP}
     When the functions $f$, $g$, $h$ are affine (i\@.e\@., they can be expressed in the form $f(x) = a^T x + b$ for some vector $a$ and scalar $b$) in the general formulation (see Theorem~\ref{NLP}), the general NLP gets something easier to solve, namely a Linear Program (LP), which can be written as follows:
