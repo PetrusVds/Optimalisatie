@@ -1,12 +1,13 @@
 \begin{theo}[Primal Optimization Problem]{Primal}
     We will denote the globally optimal value of the objective function subject to the constraints as the primal optimal value $p^*$, i\@.e\@., 
     \begin{equation*}
-        p^* = \left( \min_{x \in \mathbb{R}^n} f(x) \quad \text{s.t.} \quad g(x) = 0 \ \land \ h(x) \geq 0 \right).
+        p^* = \left( 
+            \underbrace{\min_{x \in \mathbb{R}^n} f(x) \quad \text{s.t.} \quad g(x) = 0 \ \land \ h(x) \geq 0}_{\text{primal optimization problem}} 
+            \right).
     \end{equation*}
-    and we will denote this optimization problem as the primal optimization problem.
 \end{theo}
 
-\newpage
+% \newpage
 
 \begin{theo}[Lagrangian Function and Lagrange Multipliers]{LagrangianFunMultp}
     We define the Lagrangian function to be 
@@ -18,10 +19,12 @@
     where $\lambda \in \mathbb{R}^l$ and $\mu \geq 0 \in \mathbb{R}^m$ are the Lagrange multipliers or dual variables.
 \end{theo}
 
+\newpage
+
 \begin{lem}[Lower Bound Property of Lagrangian]{LowerBoundPrimal}
     If $\tilde{x}$ is a feasible point of (\ref{Primal}) and $\mu \geq 0$, then
     \begin{equation*}
-        \mathcal{L}(\tilde{x}, \lambda, \mu) \leq f(\tilde(x)).
+        \mathcal{L}(\tilde{x}, \lambda, \mu) \leq f(\tilde{x}).
     \end{equation*}
     \vspace*{-0.5cm}
 \end{lem}
@@ -31,7 +34,7 @@
     \begin{equation*}
         \mathcal{L}(\tilde{x}, \lambda, \mu) = f(\tilde{x}) + \lambda^T \underbrace{g(\tilde{x})}_{=0} + \underbrace{\mu^T}_{\geq 0} \underbrace{h(\tilde{x})}_{\geq 0} \leq f(\tilde{x}).
     \end{equation*}
-    \vspace*{-0.5cm}
+    \vspace*{-0.6cm}
 \end{prf}
 
 \begin{theo}[Lagrange Dual Function]{Dual}
@@ -47,7 +50,7 @@
     \begin{equation*}
         q(\lambda, \mu) \leq p^*.
     \end{equation*}
-    \vspace*{-0.5cm}
+    \vspace*{-0.6cm}
 \end{lem}
 
 \begin{prf}[Lower Bound property of Lagrange Dual]{prfLowerBoundDual}
@@ -106,8 +109,6 @@
     % \vspace{-0.7cm}
 \end{theo}
 
-\newpage
-
 \begin{theo}[Slater Condition]{Slater}  
     \vspace{-0.1cm}  
     If there exist one feasible point $\tilde{x}$ such that all non-linear inequalities are strictly satisfied of a primal convex optimization problem hold, then the Slater condition is satisfied. More explicitly, for a convex problem we must have affine equality constraints, $g(x) = Ax + b$, and the inequality constraint functions can be either affine or concave functions, thus without loss of generality assume that the first $q_1 \leq q$ inequalities are affine and the remaining ones concave. Then the Slater condition holds if and only if there exists an $\tilde{x}$ such that
@@ -118,6 +119,8 @@
     \end{align*}
     \textbf{Note:} This is trivially satisfied for LP and QP problems.
 \end{theo}
+
+% \vspace{-0.3cm}
 
 \begin{theo}[KKT]{KKT}
     \vspace{-0.1cm}
@@ -159,10 +162,9 @@
         \end{enumerate}
     \end{framed}
     
-    These KKT conditions, under the given assumptions, are necessary and sufficient for optimality.
+    % These KKT conditions, under the given assumptions, are necessary and sufficient for optimality.
 \end{theo}
 
-\newpage
 
 \begin{prf}[KKT]{prfKKT}
     ``$\Rightarrow$'': 

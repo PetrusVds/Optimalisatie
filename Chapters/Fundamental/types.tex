@@ -24,41 +24,45 @@
     \vspace*{-0.5cm}
 \end{pro}
 
-\begin{theo}[Convex optimization problem]{ConvexOptimization}
+\begin{pro}[Globality of local minima of convex function]{LocalImpliesGlobalFunction}
     % \vspace*{-0.1cm}
-    An optimization problem with convex feasible set $\Omega$ and convex objective function $f: \ \Omega \rightarrow \R$ is called a convex optimization problem. 
-\end{theo}
-
-\begin{pro}[Globality of local minima of convex optimization problem]{LocalImpliesGlobal}
-    % \vspace*{-0.1cm}
-    For a convex optimization problem, a local minimum is also a global one.
+    For a convex function, a local minimum is also a global one.
 \end{pro}
 
-\begin{prf}[Globality of local minima of convex optimization problem]{prfLocalImpliesGlobal}
-    % \vspace*{-0.1cm}
-    Regard a local minimum $x^*$ of the convex optimization problem 
-    \begin{mini*}|l|
-        {x \in \mathbb{R}^n}{f(x)}
-        {}{}
-        \addConstraint{x \in \Omega}.
-    \end{mini*}
-    We will show that for any point $y \in \Omega$ holds $f(y) \geq f(x^*)$, i\@.e\@. $x^*$ is a global minimum. \\
-
-    % \vspace*{0.4cm}
-
-    \begin{minipage}{0.78\textwidth}
+\begin{prf}[Globality of local minima of convex function]{prfLocalImpliesGlobalFunction}
+    \begin{minipage}{0.77\textwidth}
         First we choose, using local optimality, a neighborhood $\mathcal{N}$ of $x^*$ such that for all $\tilde{x} \in \Omega \cap \mathcal{N}$ holds $f(\tilde{x}) \geq f(x^*)$. Second, we regard the connecting line between $x^*$ and $y$. This line is completely contained in $\Omega$ due to the convexity of $\Omega$. Now we choose a point $\tilde{x}$ on this line such that it is in the neighborhood, but not equal to $x^*$, i\@.e\@. $\tilde{x} = x^* + \lambda(y - x^*)$ for some $\lambda \in (0,1)$, and $\tilde{x} \in \Omega \cap \mathcal{N}$. Due to local optimality, we have $f(\tilde{x}) \geq f(x^*)$, and due to convexity we have
         \begin{equation*}
             f(\tilde{x}) = f(x^* + \lambda(y - x^*)) \leq f(x^*) + \lambda(f(y) - f(x^*)).
         \end{equation*}
+        It follows that $\lambda(f(y) - f(x^*)) \geq 0$, and since $\lambda \in (0,1)$, we have $f(y) \geq f(x^*)$.
     \end{minipage}
-    \begin{minipage}{0.2\textwidth}
+    \begin{minipage}{0.22\textwidth}
         \includegraphics[scale = 0.6]{Images/Fundamental/ProofGlobalityLocal.png}
     \end{minipage}
-    \vspace*{0.2cm}
-
-    It follows that $\lambda(f(y) - f(x^*)) \geq 0$, and since $\lambda \in (0,1)$, we have $f(y) \geq f(x^*)$, as desired. 
 \end{prf}
+
+
+% \begin{theo}[Convex optimization problem]{ConvexOptimization}
+%     % \vspace*{-0.1cm}
+%     An optimization problem with convex feasible set $\Omega$ and convex objective function $f: \ \Omega \rightarrow \R$ is called a convex optimization problem. Due to Proposition~\ref{LocalImpliesGlobalFunction}, a local minimum of a convex optimization problem is also a global minimum.
+% \end{theo}
+
+% \begin{pro}[Globality of local minima of convex optimization problem]{LocalImpliesGlobal}
+%     % \vspace*{-0.1cm}
+%     For a convex optimization problem, a local minimum is also a global one.
+% \end{pro}
+
+% % \begin{prf}[Globality of local minima of convex optimization problem]{prfLocalImpliesGlobal}
+% %     % \vspace*{-0.1cm}
+% %     Regard a local minimum $x^*$ of the convex optimization problem 
+% %     \begin{mini*}|l|
+% %         {x \in \mathbb{R}^n}{f(x)}
+% %         {}{}
+% %         \addConstraint{x \in \Omega}.
+% %     \end{mini*}
+% %     We will show that for any point $x \in \Omega$ holds $f(x) \geq f(x^*)$, i\@.e\@. $x^*$ is a global minimum. 
+% % \end{prf}
 
 % \begin{theo}[Unconstrained optimization problem]{UnconstrainedOptimization}
 %     \vspace*{-0.1cm}
@@ -79,8 +83,6 @@
     \vspace*{-0.1cm}
 \end{ex}
 
-\newpage
-
 \begin{ex}[Linear Programming (LP)]{LP}
     When the functions $f$, $g$, $h$ are affine (i\@.e\@., they can be expressed in the form $f(x) = a^T x + b$ for some vector $a$ and scalar $b$) in the general formulation (see Theorem~\ref{NLP}), the general NLP gets something easier to solve, namely a Linear Program (LP), which can be written as follows:
     \begin{mini*}|l|
@@ -91,6 +93,8 @@
     \end{mini*}
     where $c \in \R^n$, $A \in \R^{p \times n}$, $b \in \R^p$, $C \in \R^{q \times n}$, and $d \in \R^q$.
 \end{ex}
+
+\newpage
 
 \begin{ex}[Quadratic Programming (QP)]{QP}
     When the functions $g$, $h$ are affine (as for an LP in Theorem~\ref{LP}), and the objective function $f$ is a linear-quadratic function, the NLP becomes a Quadratic Program (QP), which can be written as follows:
@@ -115,8 +119,6 @@
     If the Hessian matrix $B$ is positive definite (i\@.e\@. if $\forall z \in \mathbb{R}^n: z^T Bz > 0$) we call the QP a strictly convex QP\@. Strictly convex QPs are a subset of convex QPs (see Theorem~\ref{ConvexQP}).
 \end{theo}
 
-\newpage
-
 \begin{ex}[Mixed-Integer Programming (MIP)]{MIP}
     A mixed-integer programming problem or mixed-integer program (MIP) is a problem with both real and integer decision variables. A MIP can be formulated as follows:
 
@@ -135,4 +137,7 @@
         \end{center}
     \end{minipage}
 \end{ex}
+
+\newpage
+
 

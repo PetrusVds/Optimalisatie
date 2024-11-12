@@ -16,16 +16,20 @@
 \begin{prf}[Convexity for $C^1$ functions]{prfConvexityC1}
     ``$\Rightarrow$'': Due to convexity of $f$ holds for given $x,y \in \Omega$  and for any $\lambda \in [0,1]$ that
     \begin{equation*}
-        f(x + \lambda(y-x)) - f(x) \leq \lambda(f(y) - f(x)).
+        f(x + \lambda(y-x)) - f(x) \leq \lambda(f(y) - f(x)),
     \end{equation*}
     and therefore that 
     \begin{equation*}
-        \nabla f(x)^T(y-x) 
-            = \lim_{\lambda \rightarrow 0}  \frac{f(x + \lambda(y-x)) - f(x)}{\lambda}
-            \leq f(y) - f(x).
+         \frac{f(x + \lambda(y-x)) - f(x)}{\lambda} \leq f(y) - f(x).
     \end{equation*}
+    Furthermore, we can deduce that
+    \begin{equation*}
+            \lim_{\lambda \rightarrow 0}  \frac{f(x + \lambda(y-x)) - f(x)}{\lambda} = \nabla f(x)^T(y-x) 
+            \leq f(y) - f(x),
+    \end{equation*}
+    which proves the statement. \\
 
-    ``$\Leftarrow$'': To prove that $z = x + \lambda(y-x) = (1-\lambda)x + \lambda y$ holds that $f(z) \leq (1-\lambda)f(x) + \lambda f(y)$, we can use the equation from Theorem~\ref{ConvexityC1} twice to get
+    ``$\Leftarrow$'': To prove that for $z = x + \lambda(y-x) = (1-\lambda)x + \lambda y$ holds that $f(z) \leq (1-\lambda)f(x) + \lambda f(y)$, we can use the equation from Theorem~\ref{ConvexityC1} twice to get
     \begin{equation*}
         f(x) \geq f(z) + \nabla f(z)^T(x-z) \ \ \text{and} \ \ f(y) \geq f(z) + \nabla f(z)^T(y-z),
     \end{equation*}
@@ -44,6 +48,8 @@
     i\@.e\@. the Hessian of $f$ is positive semi-definite.
 \end{theo}
 
+\newpage
+
 \begin{prf}[Convexity for $C^2$ functions]{prfConvexityC2}
     ``$\Rightarrow$'': Recall that a second order Taylor expansion of $y$ at $x$ in an arbitrary direction $p$ is given by the following:
     \begin{equation*}
@@ -56,22 +62,22 @@
 
     ``$\Leftarrow$'': Conversely, to prove the other direction, we use Theorem~\ref{TaylorRest} with some arbitrary $\theta \in [0,1]$:
     \begin{equation*}
-        f(y) = f(x) + \nabla {f(x)}^T(y-x) + \underset{(\ref*{ConvexityC2}): \ \geq 0}{\underbrace{\frac{t^2}{2} {(y-x)}^T \nabla^2 f(x + \theta(y-x)) (y-x)}},
+        f(y) = f(x) + \nabla {f(x)}^T(y-x) + \underset{(\ref*{ConvexityC2}): \ \geq 0}{\underbrace{\frac{t^2}{2} {(y-x)}^T \nabla^2 f(x + \theta(y-x)) (y-x)}}.
     \end{equation*}
-    and thus $f$ is convex, since Theorem~\ref{ConvexityC1} trivially holds.
+    % and thus $f$ is convex, since Theorem~\ref{ConvexityC1} trivially holds.
+    \vspace{-0.5cm}
 \end{prf}
 
 \begin{pro}[Convexity perserving operations on convex functions]{ConvexPerservingOptsConvexFunctions}
     The following operations preserve the convexity of a function:
     \begin{enumerate}
         \item 
-            Non-negative weighted sum: Suppose that $\forall i \in [i,m]: \ f_i: \R^n \rightarrow \R$ are convex functions and $\forall i \in [1,m]: \ \lambda_i \geq 0$. Then the function
+            Non-negative weighted sum: Suppose that $\forall i \in [i,m]: \ f_i: \R^n \rightarrow \R$ are convex functions and $\forall i \in [1,m]: \ \lambda_i \geq 0$. Then the following function is convex:
                 \begin{equation*}
                     f(x) = \sum_{i=1}^m \lambda_i f_i(x)
                 \end{equation*}
-            is convex. 
         \item 
-            Affine input transformation: If $f: \ \Omega \rightarrow \R$ is convex, then also
+            Affine input transformation: If $f: \ \Omega \rightarrow \R$ is convex, then
             \begin{equation*}
                 A \in \R^{n \times m}: \ \tilde{f}(x) = f(Ax + b)
             \end{equation*}
@@ -99,9 +105,9 @@
 \begin{prf}[Convexity perserving operations on convex functions]{prfConvexPerservingOptsConvexFunctions}
     \begin{enumerate}
         \item 
-            TODO (use the definition of convexity).
+            \ldots
         \item 
-            TODO (use the definition of convexity).
+            \ldots
         \item 
             Recall that $g$ is a convex and monotonely increasing function, then: 
             \begin{equation*}
@@ -187,11 +193,11 @@
         \Omega = \{x \in \R^n \ | \ f_i(x) \leq 0, \ i \in [1,m]\}
     \end{equation*}
     is a convex set, because it is the intersection of sublevel sets $\Omega_i$ of convex functions $f_i$, i\@.e\@.
-    \begin{align*}
+    \begin{equation*}
         \Omega 
-            &= \bigcap_{i=1}^m \Omega_i \\
-            &= \bigcap_{i=1}^m \ \{x \in \R^n \ | \ f_i(x) \leq 0 \}.
-    \end{align*}
+            % = \bigcap_{i=1}^m \Omega_i 
+            = \bigcap_{i=1}^m \ \{x \in \R^n \ | \ f_i(x) \leq 0 \}.
+    \end{equation*}
     \vspace{-0.5cm}
 \end{ex}
 
@@ -204,7 +210,7 @@
     \vspace*{-0.5cm}
 \end{theo}
 
-\newpage
+% \newpage
 
 \begin{prf}[Optimality condition for convex problems]{prfOptimalityConditionConvexProblems}
     ``$\Rightarrow$'': Assume for the sake of contradiction that $\exists y \in \Omega: \ \nabla {f(x^*)}^T(y - x^*) < 0$, then we could regard a Taylor expansion
@@ -276,6 +282,8 @@
     \textbf{Note:} The opposite is not true; a function that has all its level sets convex is not necessarily convex.
 \end{ex}
 
+\newpage
+
 \begin{ex}[Polyhedral Set]{PolyhedralSet}
     A polyhedral set $C \subset \R^n$ is defined as the intersection of a finite number of halfspaces, i\@.e\@.,
     \begin{equation*}
@@ -346,7 +354,7 @@
     \begin{equation*}
         \forall x,y \in C, \ \forall \lambda, \mu \geq 0: \ \lambda x + \mu y \in C.
     \end{equation*}
-    \begin{minipage}{0.66\textwidth}
+    \begin{minipage}{0.63\textwidth}
         The following are examples of convex cones:
         \begin{itemize}
             \item 
@@ -356,10 +364,10 @@
             \item Positive semi-definite cone: The set $\mathbb{S}^n_+$ is a convex cone.
         \end{itemize}
     \end{minipage}
-    \begin{minipage}{0.32\textwidth}
+    \begin{minipage}{0.33\textwidth}
         \vspace{0.3cm}
         \begin{center}
-            \includegraphics[scale = 0.25]{Images/Fundamental/LorenzCone.png}
+            \includegraphics[scale = 0.3]{Images/Fundamental/LorenzCone.png}
         \end{center}
     \end{minipage}
 \end{ex}
