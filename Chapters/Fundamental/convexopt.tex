@@ -69,13 +69,12 @@
 \end{prf}
 
 \begin{pro}[Convexity perserving operations on convex functions]{ConvexPerservingOptsConvexFunctions}
-    The following operations preserve the convexity of a function:
     \begin{enumerate}
-        \item 
-            Non-negative weighted sum: Suppose that $\forall i \in [i,m]: \ f_i: \R^n \rightarrow \R$ are convex functions and $\forall i \in [1,m]: \ \lambda_i \geq 0$. Then the following function is convex:
-                \begin{equation*}
-                    f(x) = \sum_{i=1}^m \lambda_i f_i(x)
-                \end{equation*}
+        % \item 
+        %     Non-negative weighted sum: Suppose that $\forall i \in [i,m]: \ f_i: \R^n \rightarrow \R$ are convex functions and $\forall i \in [1,m]: \ \lambda_i \geq 0$. Then the following function is convex:
+        %         \begin{equation*}
+        %             f(x) = \sum_{i=1}^m \lambda_i f_i(x)
+        %         \end{equation*}
         \item 
             Affine input transformation: If $f: \ \Omega \rightarrow \R$ is convex, then
             \begin{equation*}
@@ -90,24 +89,24 @@
                 f(x) = \sup_{i \in I} f_i(x)
             \end{equation*}
             is convex.
-        \item 
-            Composition: Let $h: \R^m \rightarrow \R$ and $g: \R^n \rightarrow \R^m$ with $g = (g_1, \ldots, g_m)$. Then $f(x) = (h \circ g)(x) = h(g(x))$ is convex if any of the followings holds: 
-            \begin{enumerate}
-                \item 
-                    $h$ is convex and non-decreasing in each argument and $\forall i \in [1,m]: \ g_i$ is convex.
-                \item 
-                    $h$ is convex and non-decreasing in each argument and $\forall i \in [1,m]: \ g_i$ is concave, i\@.e\@. $-g_i$ is convex.
-            \end{enumerate}
+        % \item 
+        %     Composition: Let $h: \R^m \rightarrow \R$ and $g: \R^n \rightarrow \R^m$ with $g = (g_1, \ldots, g_m)$. Then $f(x) = (h \circ g)(x) = h(g(x))$ is convex if any of the followings holds: 
+        %     \begin{enumerate}
+        %         \item 
+        %             $h$ is convex and non-decreasing in each argument and $\forall i \in [1,m]: \ g_i$ is convex.
+        %         \item 
+        %             $h$ is convex and non-decreasing in each argument and $\forall i \in [1,m]: \ g_i$ is concave, i\@.e\@. $-g_i$ is convex.
+        %     \end{enumerate}
     \end{enumerate}
-    \vspace*{-0.2cm}
+    % \vspace*{-0.2cm}
 \end{pro}
 
 \begin{prf}[Convexity perserving operations on convex functions]{prfConvexPerservingOptsConvexFunctions}
     \begin{enumerate}
         \item 
             \ldots
-        \item 
-            \ldots
+        % \item 
+        %     \ldots
         \item 
             Recall that $g$ is a convex and monotonely increasing function, then: 
             \begin{equation*}
@@ -116,16 +115,16 @@
             i\@.e\@. $g \circ f$ is convex, since the Hessian is positive semi-definite.
         \item 
             Epigraph of $f$ is the intersection of the epigraphs of $f_i$, which are convex.
-        \item
-            Recall that $g_i$ is convex and that $h$ is convex and non-decreasing in each argument. Then:
-            \begin{align}
-                f(\lambda x + (1 - \lambda)y) 
-                    &= h(g(\lambda x + (1 - \lambda)y)) \notag \\
-                    &\leq h(\lambda g(x) + (1 - \lambda)g(y)) \\
-                    &\leq \lambda h(g(x)) + (1 - \lambda)h(g(y)) \\
-                    &= \lambda f(x) + (1 - \lambda)f(y), \notag
-            \end{align}
-            where we used the convexity of $g_i$ and the fact that $h$ is non-decreasing to obtain inequality (1), and the convexity of $h$ to obtain inequality (2). 
+        % \item
+        %     Recall that $g_i$ is convex and that $h$ is convex and non-decreasing in each argument. Then:
+        %     \begin{align}
+        %         f(\lambda x + (1 - \lambda)y) 
+        %             &= h(g(\lambda x + (1 - \lambda)y)) \notag \\
+        %             &\leq h(\lambda g(x) + (1 - \lambda)g(y)) \\
+        %             &\leq \lambda h(g(x)) + (1 - \lambda)h(g(y)) \\
+        %             &= \lambda f(x) + (1 - \lambda)f(y), \notag
+        %     \end{align}
+        %     where we used the convexity of $g_i$ and the fact that $h$ is non-decreasing to obtain inequality (1), and the convexity of $h$ to obtain inequality (2). 
     \end{enumerate}
     \vspace*{-0.2cm}
 \end{prf}
@@ -167,7 +166,8 @@
             \includegraphics[scale = 0.495]{Images/Fundamental/ConvexSubset.png}
         \end{center}
     \end{minipage}
-    \vspace{-0.3cm}
+
+    \textbf{Note:} the opposite is not true; a function that has all its level sets convex is not necessarily convex.
 \end{theo}
 
 \begin{prf}[Convexity of Sublevel subsets]{prfConvexitySublevelSubset}
@@ -175,11 +175,10 @@
     \begin{equation*}
         f((1-\lambda)x + \lambda y) \leq (1-\lambda)f(x) + \lambda f(y) \leq \underset{= c}{\underbrace{(1-\lambda)c + \lambda c}}.
     \end{equation*}
-    \vspace*{-0.7cm}
+    \vspace*{-1cm}
 \end{prf}
 
 \begin{pro}[Convexity perserving operations on convex sets]{ConvexityPreservingOperations}
-    The following operations preserve the convexity of a set:
     \begin{enumerate}
         \item The intersection of finitely or infinitely many convex sets is convex.
         \item Affine image: if $\Omega$ is convex, then for $A \in \R^{m \times n}$, $b \in \R^m$ also the set $A\Omega + b = \{ y \in \R^m \ | \ \exists x \in \Omega : y = Ax + b \}$ is convex.
@@ -201,35 +200,101 @@
     \vspace{-0.5cm}
 \end{ex}
 
-
-\begin{theo}[Optimality condition for convex problems]{OptimalityConditionConvexProblems}
-    Regard a convex optimization problem with continuously differentiable objective function $f$. A point $x^* \in \Omega$ is a global optimizer if and only if 
+\begin{ex}[Halfspace]{HalfSpace}
+    A halfspace 
     \begin{equation*}
-        \forall y \in \Omega: \ \nabla {f(x^*)}^T(y - x^*) \geq 0.
-    \end{equation*} 
-    \vspace*{-0.5cm}
-\end{theo}
-
-% \newpage
-
-\begin{prf}[Optimality condition for convex problems]{prfOptimalityConditionConvexProblems}
-    ``$\Rightarrow$'': Assume for the sake of contradiction that $\exists y \in \Omega: \ \nabla {f(x^*)}^T(y - x^*) < 0$, then we could regard a Taylor expansion
-    \begin{equation*}
-        f(x^* + \lambda(y - x^*)) = f(x^*) + \lambda \underbrace{\nabla {f(x^*)}^T(y - x^*)}_{<0} + \underbrace{o(\lambda)}_{\rightarrow 0}.
+        H_{\leq} = \{ x \in \R^n \ | \ a^T x \leq b \}
     \end{equation*}
-   This implies that for sufficiently small positive $\lambda$, we have 
-   \begin{equation*}
-        f(x^* + \lambda(x - x^*)) < f(x^*),
-   \end{equation*}
-   which contradicts the optimality of $x^*$. \\
+    is a convex set, as the zero sublevel set of the affine (and therefore convex) function $f(x) = a^T x - b$, cf. Theorem~\ref{ConvexitySublevelSubset}. 
+\end{ex}
 
-    ``$\Leftarrow$'': 
-   Due to the $C^1$ characterization of convexity of $f$ in Theorem~\ref{ConvexityC1}, we have for any feasible $y \in \Omega$: 
-   \begin{equation*}
-       f(y) \geq f(x^*) + \underbrace{\nabla {f(x^*)}^T(y - x^*)}_{\geq 0} \geq f(x^*),
-   \end{equation*}
-   which implies that $x^*$ is a global optimizer.
-\end{prf}  
+\begin{ex}[Polyhedral Set]{PolyhedralSet}
+    A polyhedral set $C \subset \R^n$ is defined as the intersection of a finite number of halfspaces, i\@.e\@.,
+    \begin{equation*}
+        C = \bigcap_{i= 1, \ldots, m} \{ x \in \R^n \ | \ a_i^T x \leq b_i \}.
+    \end{equation*}
+    Since the intersection of convex sets is convex, $C$ is a convex set if all the halfspaces are convex. \\
+
+    \textbf{Note:} A polyhedral set might contain equalities, i\@.e\@., 
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ Ax \leq b, \ Cx = d \}.
+    \end{equation*}
+    which can be written with just inequalities as such:
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ Ax \leq b, \ Cx \leq d, \ -Cx \leq -d \}.
+    \end{equation*}
+    \vspace*{-0.5cm}
+\end{ex}
+
+\begin{ex}[Ellipsoid]{Ellipsoid}
+    If $P \in \R^{n \times n}$ is symmetric positive definite, then the ellipsoid
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ {(x-x_c)}^T P^{-1} (x-x_c) \leq 1 \}
+    \end{equation*}
+    is convex, as the $1$-sublevel set of the convex function $f(x) = {(x-x_c)}^T P^{-1} (x-x_c) - 1$, where $x_c$ is the center of the ellipsoid and $P$ is the shape matrix. The latter determines how far the ellipsoid extends in each direction from $x_c$; the lengths of the semi-axis are given by $\sqrt{\lambda_i}$, where $\lambda_i$ are the eigenvalues of $P$, while the eigenvectors of $P$ determine the orientation of the ellipsoid. When $P = r^2I$, the ellipsoid is a ball with radius $r$ around $x_c$, i\@.e\@.,
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ \|x - x_c\|_{2} \leq r \},
+    \end{equation*}
+    or, in general, the $p$-norm ball
+    \begin{equation*}
+        C = \{ x \in \R^n \ | \ \|x - x_c\|_{p} \leq r \}.
+    \end{equation*}
+    where the value of $p$ determines the shape of the ball, i\@.e\@.,
+    \vspace*{0.3cm}
+
+    \begin{itemize}
+        \begin{minipage}{0.33\textwidth}
+            \item 
+                $p = 1$: 
+                \begin{center}
+                    \hspace{-1.5cm}\includegraphics[scale = 0.25]{Images/Fundamental/ManhattanBall.png}
+                \end{center}
+        \end{minipage}
+        \begin{minipage}{0.33\textwidth}
+            \item 
+                $p = 2$: 
+                \begin{center}
+                    \hspace{-1.5cm}\includegraphics[scale = 0.25]{Images/Fundamental/EuclideanBall.png}
+                \end{center}
+        \end{minipage}
+        \begin{minipage}{0.33\textwidth}
+            \item 
+                $p = \infty$: 
+                \begin{center}
+                    \hspace{-1.5cm}\includegraphics[scale = 0.25]{Images/Fundamental/MaxBall.png}
+                \end{center}
+        \end{minipage}
+    \end{itemize}
+
+    \textbf{Note:} All images above are for $r = 1$.
+\end{ex}
+
+\begin{ex}[Convex cones]{Convex cones}
+    A set $C$ is said to be cone if
+    \begin{equation*}
+        \forall x: \ x \in C \ \Rightarrow \ \forall \lambda \geq 0: \ \lambda x \in C.
+    \end{equation*}
+    Moreover, $C$ is a convex cone if and only if it is closed under addition and multiplication with non-negative scalars, i\@.e\@.,
+    \begin{equation*}
+        \forall x,y \in C, \ \forall \lambda, \mu \geq 0: \ \lambda x + \mu y \in C.
+    \end{equation*}
+    \begin{minipage}{0.63\textwidth}
+        The following are examples of convex cones:
+        \begin{itemize}
+            \item 
+                Non-negative orthant: The set $C = \{ x \in \R^n \ | x \geq 0 \}$ is a convex cone. 
+            \item
+                Norm cones: The set $C = \{ (x,t) \in \R^n \times \R \ | \ \|x\|_p \leq t \}$ is a convex cone. For instance, the Lorenz cone or ice-cream cone, when $p = 2$, is shown on the right.
+            \item Positive semi-definite cone: The set $\mathbb{S}^n_+$ is a convex cone.
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}{0.33\textwidth}
+        \vspace{0.3cm}
+        \begin{center}
+            \includegraphics[scale = 0.3]{Images/Fundamental/LorenzCone.png}
+        \end{center}
+    \end{minipage}
+\end{ex}
 
 \begin{theo}[Sufficient Condition for Convex NLP]{SufficientConditionConvexNLP}
     For a nonlinear optimization problem (NLP) in standard form
@@ -272,105 +337,34 @@
         \end{itemize}
 \end{theo}
 
-\begin{ex}[Halfspace]{HalfSpace}
-    A halfspace 
+\begin{theo}[First Order Optimality condition for convex problems]{OptimalityConditionConvexProblems}
+    Regard a convex optimization problem with continuously differentiable objective function $f$. A point $x^* \in \Omega$ is a global optimizer if and only if 
     \begin{equation*}
-        H_{\leq} = \{ x \in \R^n \ | \ a^T x \leq b \}
-    \end{equation*}
-    is a convex set, as the zero sublevel set of the affine (and therefore convex) function $f(x) = a^T x - b$, cf. Theorem~\ref{ConvexitySublevelSubset}. \\
-
-    \textbf{Note:} The opposite is not true; a function that has all its level sets convex is not necessarily convex.
-\end{ex}
-
-\newpage
-
-\begin{ex}[Polyhedral Set]{PolyhedralSet}
-    A polyhedral set $C \subset \R^n$ is defined as the intersection of a finite number of halfspaces, i\@.e\@.,
-    \begin{equation*}
-        C = \bigcap_{i= 1, \ldots, m} \{ x \in \R^n \ | \ a_i^T x \leq b_i \}.
-    \end{equation*}
-    Since the intersection of convex sets is convex, $C$ is a convex set if all the halfspaces are convex. \\
-
-    \textbf{Note:} A polyhedral set might contain equalities, i\@.e\@., 
-    \begin{equation*}
-        C = \{ x \in \R^n \ | \ Ax \leq b, \ Cx = d \}.
-    \end{equation*}
-    which can be written with just inequalities as such:
-    \begin{equation*}
-        C = \{ x \in \R^n \ | \ Ax \leq b, \ Cx \leq d, \ -Cx \leq -d \}.
-    \end{equation*}
+        \forall y \in \Omega: \ \nabla {f(x^*)}^T(y - x^*) \geq 0.
+    \end{equation*} 
     \vspace*{-0.5cm}
-\end{ex}
+\end{theo}
 
-\begin{ex}[Ellipsoid]{Ellipsoid}
-    If $P \in \R^{n \times n}$ is symmetric positive definite, then the ellipsoid
+% \newpage
+
+\begin{prf}[Optimality condition for convex problems]{prfOptimalityConditionConvexProblems}
+    ``$\Rightarrow$'': Assume for the sake of contradiction that $\exists y \in \Omega: \ \nabla {f(x^*)}^T(y - x^*) < 0$, then we could regard a Taylor expansion
     \begin{equation*}
-        C = \{ x \in \R^n \ | \ {(x-x_c)}^T P^{-1} (x-x_c) \leq 1 \}
+        f(x^* + \lambda(y - x^*)) = f(x^*) + \lambda \underbrace{\nabla {f(x^*)}^T(y - x^*)}_{<0} + \underbrace{o(\lambda)}_{\rightarrow 0}.
     \end{equation*}
-    is convex, as the $1$-sublevel set of the convex function $f(x) = {(x-x_c)}^T P^{-1} (x-x_c) - 1$, where $x_c$ is the center of the ellipsoid and $P$ is the shape matrix. The latter determines how far the ellipsoid extends in each direction from $x_c$; the lengths of the semi-axis are given by $\sqrt{\lambda_i}$, where $\lambda_i$ are the eigenvalues of $P$, while the eigenvectors of $P$ determine the orientation of the ellipsoid. When $P = r^2I$, the ellipsoid is a ball with radius $r$ around $x_c$, i\@.e\@.,
-    \begin{equation*}
-        C = \{ x \in \R^n \ | \ \|x - x_c\|_{2} \leq r \},
-    \end{equation*}
-    or, in general, the $p$-norm ball
-    \begin{equation*}
-        C = \{ x \in \R^n \ | \ \|x - x_c\|_{p} \leq r \}.
-    \end{equation*}
-    where the value of $p$ determines the shape of the ball, i\@.e\@.,
-    \vspace*{0.3cm}
+   This implies that for sufficiently small positive $\lambda$, we have 
+   \begin{equation*}
+        f(x^* + \lambda(x - x^*)) < f(x^*),
+   \end{equation*}
+   which contradicts the optimality of $x^*$. \\
 
-    \begin{itemize}
-        \begin{minipage}{0.33\textwidth}
-            \item 
-                $p = 1$: 
-                \begin{center}
-                    \hspace{-1.5cm}\includegraphics[scale = 0.2]{Images/Fundamental/ManhattanBall.png}
-                \end{center}
-        \end{minipage}
-        \begin{minipage}{0.33\textwidth}
-            \item 
-                $p = 2$: 
-                \begin{center}
-                    \hspace{-1.5cm}\includegraphics[scale = 0.2]{Images/Fundamental/EuclideanBall.png}
-                \end{center}
-        \end{minipage}
-        \begin{minipage}{0.33\textwidth}
-            \item 
-                $p = \infty$: 
-                \begin{center}
-                    \hspace{-1.5cm}\includegraphics[scale = 0.2]{Images/Fundamental/MaxBall.png}
-                \end{center}
-        \end{minipage}
-    \end{itemize}
+    ``$\Leftarrow$'': 
+   Due to the $C^1$ characterization of convexity of $f$ in Theorem~\ref{ConvexityC1}, we have for any feasible $y \in \Omega$: 
+   \begin{equation*}
+       f(y) \geq f(x^*) + \underbrace{\nabla {f(x^*)}^T(y - x^*)}_{\geq 0} \geq f(x^*),
+   \end{equation*}
+   which implies that $x^*$ is a global optimizer.
+\end{prf}  
 
-    \textbf{Note:} All images above are for $r = 1$.
-\end{ex}
-
-\begin{ex}[Convex cones]{Convex cones}
-    A set $C$ is said to be cone if
-    \begin{equation*}
-        \forall x: \ x \in C \ \Rightarrow \ \forall \lambda \geq 0: \ \lambda x \in C.
-    \end{equation*}
-    Moreover, $C$ is a convex cone if and only if it is closed under addition and multiplication with non-negative scalars, i\@.e\@.,
-    \begin{equation*}
-        \forall x,y \in C, \ \forall \lambda, \mu \geq 0: \ \lambda x + \mu y \in C.
-    \end{equation*}
-    \begin{minipage}{0.63\textwidth}
-        The following are examples of convex cones:
-        \begin{itemize}
-            \item 
-                Non-negative orthant: The set $C = \{ x \in \R^n \ | x \geq 0 \}$ is a convex cone. 
-            \item
-                Norm cones: The set $C = \{ (x,t) \in \R^n \times \R \ | \ \|x\|_p \leq t \}$ is a convex cone. For instance, the Lorenz cone or ice-cream cone, when $p = 2$, is shown on the right.
-            \item Positive semi-definite cone: The set $\mathbb{S}^n_+$ is a convex cone.
-        \end{itemize}
-    \end{minipage}
-    \begin{minipage}{0.33\textwidth}
-        \vspace{0.3cm}
-        \begin{center}
-            \includegraphics[scale = 0.3]{Images/Fundamental/LorenzCone.png}
-        \end{center}
-    \end{minipage}
-\end{ex}
-
-
+% \newpage
 

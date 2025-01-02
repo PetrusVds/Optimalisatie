@@ -105,68 +105,6 @@
     \vspace{-1cm}
 \end{pro}
 
-\newpage
-
-\begin{theo}[Moore Penrose Pseudo Inverse]{MoorePenrose}
-    Assume $J \in \R^{m \times n}$ and that the singular value decomposition (SVD) of $J$ is given by $J = U \Sigma V^T$. Then, the Moore-Penrose pseudo-inverse $J^+$ is given by
-    \begin{equation*}
-        J^+ = V S^+ U^T,
-    \end{equation*}
-    where for
-    \begin{equation*}
-    S = 
-        \left[
-        \begin{array}{ccccccc}
-        \sigma_1 &  &  &  &  &  \\
-         & \sigma_2 &  &  &  &  \\
-         &  & \ddots &  &  & \\
-         &  &  & \sigma_r &  & \\
-         &  &  &  & 0 & & \\
-         &  &  &  & & \ddots & \\
-         &  &  &  & & & 0 \\
-        \hline
-        0 & \cdots & \cdots & 0 & \cdots & \cdots & 0
-        \end{array}
-        \right]
-    \quad \text{holds} \quad
-    S^+ = 
-        \left[
-        \begin{array}{ccccccc|c}
-            \sigma_1^{-1} &  &  &  &  & & & 0\\
-            & \sigma_2^{-1} &  &  &  & &  & \vdots \\
-            &  & \ddots &  &  & & & \vdots \\
-            &  &  & \sigma_r^{-1} & & & & 0\\
-            &  &  &  & 0 & & & \vdots\\
-            &  &  &  & & \ddots &  & \vdots\\
-            &  &  &  & & & 0 & 0\\
-        \end{array}
-        \right]
-    \end{equation*}
-\end{theo}
-
-\begin{pro}[Moore Penrose Pseudo Inverse]{proMoorePenrose}
-    If matrix $A \in \R^{m \times n}$ 
-    \begin{itemize}
-        \item 
-            is non-singular then 
-            \begin{equation*}
-                A^+ = A^{-1},
-            \end{equation*}
-        \item 
-            has full column rank, that is $r = n$, then 
-            \begin{equation*}
-                A^+A = VV^T = I,
-            \end{equation*}
-            i\@.e\@. $A^+$ is a left inverse of $A$,
-        \item 
-            has full row rank, that is $r = m$, then 
-            \begin{equation*}
-                AA^+ = UU^T = I,
-            \end{equation*}
-            i\@.e\@. $A^+$ is a right inverse of $A$.
-    \end{itemize}
-\end{pro}
-
 \begin{theo}[Orthogonal-triangular decomposition (QR)]{QR}
     If $A \in \R^{m \times n}$, then there exists an orthogonal matrix $Q \in \R^{m \times m}$ and an upper triangular matrix $R \in \R^{m \times n}$ such that
     \begin{equation*}

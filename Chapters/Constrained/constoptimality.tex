@@ -1,0 +1,144 @@
+\begin{theo}[Unconstrained optimization Problems]{Unconstrained}
+    We define the constrained optimization problem as 
+    \begin{mini*}|l|
+        {x \in \mathbb{R}^n}{f(x)}
+        {}{}
+        \addConstraint{g(x) = 0}
+        \addConstraint{h(x) \geq 0}.
+    \end{mini*}
+    in which $f : \mathbb{R}^n \to \mathbb{R}$, $g: \mathbb{R}^n \to \mathbb{R}^m$ and $h: \mathbb{R}^n \to \mathbb{R}^q$ are smooth.
+\end{theo}
+
+\begin{theo}[Tangent]{Tangent}
+    A vector $p \in \mathbb{R}^n$ is called a tangent to $\Omega$ at $x^* \in \Omega$ if there exists a smooth curve $\overline{x}(t): [0, \epsilon) \to \mathbb{R}^n$ with 
+    \vspace{-0.2cm}
+    \begin{align*}
+        \overline{x}(0) &= x^* \\
+        \forall t \in [0, \epsilon): \ x(t) &\in \Omega \\
+        \frac{d}{dp}\overline{x}(0) &= p 
+    \end{align*}
+    \vspace{-0.5cm}
+\end{theo}
+
+\begin{theo}[Tangent Cone]{TangentCone}
+    The tangent cone $T_{\Omega}(x^*)$ of $\Omega$ is the set of all tangent vectors at $x^*$.
+\end{theo}
+
+\begin{theo}[First Order Necessary Conditions (FONC): variant 0]{FONC0}
+    If $x^*$ is a local minimizer, then 
+    \begin{enumerate}
+        \item $x^* \in \Omega$
+        \item $\forall p \in T_{\Omega}(x^*): \nabla f(x^*)^T p \geq 0$
+    \end{enumerate}
+\end{theo}
+
+\begin{prf}[First Order Necessary Conditions (FONC): variant 0]{prfFONC0}
+    If $\exists p \in T_{\Omega}(x^*): \ \nabla f(x^*)^T p < 0$, then there would be a feasible curve $\overline{x}(t)$ with $\frac{d}{dt}f(\overline{x}(t))\rvert_{t=0} = \nabla f(x^*)^Tp < 0$.
+\end{prf}
+
+\begin{theo}[(In)active Constraints]{ActiveConstraints}
+    An inequality constraint $h_i(x) \geq 0$ is called active at $x^* \in \Omega$ iff $h_i(x^*) = 0$ and otherwise inactive. Inactive constraints do not influence the Tangent Cone.
+\end{theo}
+
+\begin{theo}[Active Set]{ActiveSet}
+    The (1-indexed) index set $\mathcal{A}(x^*) \subset \{1,\ldots,q\}$ of active constraints is called the active set. 
+\end{theo}
+
+\begin{theo}[Linear Independence Constraint Qualification (LICQ)]{LICQ}
+    The linear independence constraint qualification (LICQ) holds at $x^* \in \Omega$ iff all vectors $\nabla g_i(x^*)$ for $i \in \{1,\ldots, m\}$ and $\nabla h_i(x^*)$ with $i \in \mathcal{A}(x^*)$ are linearly independent.
+\end{theo}
+
+\begin{theo}[Linearized Feasible Cone]{LinFeasCone}
+    The linearized feasible cone at $x^* \in \Omega$ is defined as:
+    \begin{equation*}
+        \mathcal{F}(x^*) = \{p \ | \ \forall i \in [1,m]: \nabla g_i(x^*)^Tp = 0 \ \land \ \forall i \in \mathcal{A}(x^*): \nabla h_i(x^*)^Tp \geq 0\}
+    \end{equation*}
+    Now we have that at any $x^* \in \Omega$ holds 
+    \begin{enumerate}
+        \item $T_{\Omega}(x^*) \subset \mathcal{F}(x^*)$
+        \item If LICQ holds at $x^*$, then $T_{\Omega}(x^*) = \mathcal{F}(x^*)$
+    \end{enumerate}
+    \vspace{-0.3cm}
+\end{theo}
+
+\begin{theo}[First Order Necessary Conditions (FONC): variant 1]{FONC1}
+    If LICQ holds at $x^*$ and $x^*$ is a local minimizer, then
+    \begin{enumerate}
+        \item $x^* \in \Omega$
+        \item $\forall p \in \mathcal{F}(x^*): \nabla f(x^*)^Tp \geq 0$
+    \end{enumerate}
+    \vspace{-0.3cm}
+\end{theo}
+
+\begin{lem}[Farkas' Lemma]{Farkas}
+    For any matrices $G \in \mathbb{R}^{m \times n}$, $H \in \mathbb{R}^{q \times n}$ and vector $c \in \mathbb{R}^n$ holds exactly one of the following mutually-exclusive statements:
+    \begin{enumerate}
+        \item $\exists \lambda \in \mathbb{R}^m, \ \mu \in \mathbb{R}^q: \ \mu \geq 0 \ \land \ c = G^T\lambda + H^T\mu$
+        \item $\exists p \in \mathbb{R}^n: Gp = 0 \ \land \ Hp \geq 0 \ \land \ c^Tp < 0$
+    \end{enumerate}
+\end{lem}
+
+\begin{prf}[Farkas' Lemma]{prfFarkas}
+    In the proof we use the separating hyperplane theorem with respect to the point $c \in \mathbb{R}^n$ and the set $S = \{ G^T\lambda + H^T\mu \ | \ \lambda \in \mathbb{R}^m, \mu \in \mathbb{R}^q, \mu \geq 0\}$. Notice that $S$ is a convex cone. The separating hyperplane theorem states that two convex sets - in our case the set $S$ and the point $c$ - can always be separated by a hyperplane. In our case, the hyperplane touches the set $S$ at the origin, and is described by a normal vector $p$. Separation of $S$ and $c$ means that for all $y \in S$ holds that $y^{T}p \geq 0$ and on the other hand, $c^{T}p < 0$. Now we find that either $c \in S$, which would imply the first exclusive statement of the lemma, or $c \notin S$. In the latter case, we can find the following equalities:
+    \begin{align*}
+        c \notin S 
+            &\Leftrightarrow \exists p \in \mathbb{R}^n, \forall y \in S: \ p^{T}y \geq 0 \ \land \ p^{T}c < 0 \\
+            &\Leftrightarrow \exists p \in \mathbb{R}^n, \forall \lambda \in \mathbb{R}^m, \forall \mu \in \mathbb{R}^q, \mu \geq 0: \ p^{T}(G^T\lambda + H^T\mu) \geq 0 \ \land \ p^{T}c < 0 \\
+            % &\Leftrightarrow \exists p \in \mathbb{R}^n: \ \left(\forall \lambda, \mu \ \text{with} \ \mu \geq 0: \ p^{T}(G^T\lambda + H^{T}\mu) \geq 0 \right) \ \land \ p^{T}c < 0 \\
+            &\Leftrightarrow \exists p \in \mathbb{R}^n: \ \left(\forall \lambda: \ \lambda^{T}Gp \geq 0 \ \land \ \forall \mu \geq 0: \ \mu^{T}Hp \geq 0 \right) \ \land \ p^{T}c < 0 \\
+            % &\Leftrightarrow \exists p \in \mathbb{R}^n: \ \left(Gp = 0 \ \land \ Hp \geq 0\right) \ \land \ p^{T}c < 0 \\
+            &\Leftrightarrow \exists p \in \mathbb{R}^n: Gp = 0 \ \land \ Hp \geq 0 \ \land \ p^{T}c < 0
+    \end{align*}
+    The last line is equivalent to the second exclusive statement of the lemma.
+\end{prf}
+
+\begin{theo}[First Order Necessary Conditions (FONC): variant 2]{FONC2}
+    If $x^*$ is a local minimizer and LICQ holds at $x^*$, then there exists a $\lambda^* \in \mathbb{R}^m$ and $\mu^* \in \mathbb{R}^q$ such that
+    \begin{align*}
+        \nabla f(x^*) - \nabla g(x^*)\lambda^* - \nabla h(x^*)\mu^* &= 0 \\
+        g(x^*) &= 0 \\  
+        h(x^*) &\geq 0 \\
+        \mu^* &\geq 0 \\
+        \forall i \in [1,q]: \ \mu^*_i h_i(x^*) &= 0
+    \end{align*}
+    \textbf{Note:} The KKT conditions are the First Order Necessary Conditions for Optimality for constrained optimization, and thus are the equivalent to $\nabla f(x^*) = 0$ for unconstrained optimization.
+\end{theo}
+
+\begin{prf}[First Order Necessary Conditions (FONC): variant 2]{prfFONC2}
+    Due to the feasability of $x^*$, we have that $g(x^*) = 0$ and $h(x^*) \geq 0$. Using Farkas' Lemma, we have:
+    \begin{align*}
+        \forall p \in \mathcal{F}(x^*): \ p^T\nabla f(x^*) \geq 0 \
+            &\Leftrightarrow \ \nexists p \in \mathcal{F}(x^*): \ p^T\nabla f(x^*) < 0 \\
+            &\Leftrightarrow \ \forall \lambda^*, \mu_i^* \geq 0: \ \nabla f(x^*) = \sum_{i=1}^{m} \nabla g_i(x^*) \lambda_i^* + \sum_{i \in \mathcal{A}(x^*)} \nabla h_i(x^*) \mu_i^*
+    \end{align*}
+    Now we set all component of $\mu$ that are not element of $\mathcal{A}(x^*)$ to zero, i.e. $\mu_i^* = 0$ if $h_i(x^*) > 0$. Now the KKT conditions are fulfilled; the last two trivially, the first one is satisfied due to 
+    \begin{equation*}
+        \forall i \notin \mathcal{A}(x^*): \ \mu_i^* = 0 \ \Rightarrow \ \sum_{i \in \mathcal{A}(x^*)} \nabla h_i(x^*) \mu_i^* = \sum_{i \in \{1,\ldots,q\}} \nabla h_i(x^*) \mu_i^*.
+    \end{equation*}
+    \vspace{-0.5cm}
+\end{prf}
+
+\begin{theo}[Equivalance of optimality and KKT conditions]{OptKKT}
+    Regard a convex NLP and a point $x^* \in \Omega$ at which LICQ holds. Then:
+    \begin{equation*}
+        x^* \ \text{is a global minimizer} \ \Leftrightarrow \ \exists \lambda, \mu \ \text{so that KKT conditions hold}.
+    \end{equation*}
+    \vspace{-0.5cm}
+\end{theo}
+
+\begin{theo}[Complementarity]{Complementarity}
+    Regard a KKT point $(x^*, \lambda, \mu)$. For $i \in \mathcal{A}(x^*)$ we say $h_i$ is weakly active if $\mu_i = 0$, otherwise if $\mu_i > 0$ we say $h_i$ is strictly active. We say that strict complementarity holds at this KKT point iff all active constraints are strictly active. We define the set of weakly active constraints to be $\mathcal{A}_0(x^*, \mu)$ and the set of strictly active constraints to be $\mathcal{A}_+(x^*, \mu)$. The sets are disjoint and their union is the active set, i.e.:
+    \begin{equation*}
+        \mathcal{A}(x^*) = \mathcal{A}_0(x^*, \mu) \cup \mathcal{A}_+(x^*, \mu).
+    \end{equation*}
+    \vspace{-0.5cm}
+\end{theo}
+
+\begin{theo}[Critical Cone]{CriticalCone}
+    Regard the KKT point $(x^*, \lambda, \mu)$. The critical cone $C(x^*, \mu)$ is the following set:
+    \begin{equation*}
+        C(x^*, \mu) = \{p \ | \ \nabla g_i(x^*)^Tp = 0 \ \land \ \forall i \in \mathcal{A}_+(x^*, \mu): \ \nabla h_i(x^*)^Tp = 0 \ \land \ \mathcal{A}_+(x^*, \mu): \ \nabla h_i(x^*)^Tp \geq 0\}.
+    \end{equation*}
+    \textbf{Note:} $C(x^*, \mu) \subset \mathcal{F}(x^*)$. In case that LICQ holds, even $C(x^*, \mu) = T_{\Omega}(x^*)$. Thus, the critical
+    cone is a subset of all feasible directions. In fact: it contains all feasible directions which are from first order information neither uphill or downhill directions.
+\end{theo}
